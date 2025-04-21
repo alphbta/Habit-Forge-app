@@ -24,7 +24,7 @@ object StatsManager {
         val prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
         return mapOf(
             "hp" to prefs.getInt("hp", 50),
-            "human_health" to prefs.getInt("human_health", 0),
+            "physique" to prefs.getInt("physique", 0),
             "intelligence" to prefs.getInt("intelligence", 0),
             "creativity" to prefs.getInt("creativity", 0),
             "charisma" to prefs.getInt("charisma", 0)
