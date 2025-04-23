@@ -88,82 +88,74 @@
             android:layout_marginBottom="10dp"
             android:layout_marginTop="16dp"/>
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/tasksHeader"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:background="#E91E63"
-        android:padding="12dp"
-        android:text="Задачи"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/addNewTaskButton"
-        android:text="＋"
-        android:textSize="20sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="#E91E63"
-        android:textColor="#FFFFFF"/>
-    <LinearLayout
-        android:id="@+id/tasksContent"
+        android:background="@drawable/bg_gradient_blue"
         android:orientation="vertical"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#F48FB1"
-        android:padding="12dp"
-        android:layout_marginBottom="16dp">
+        android:layout_marginBottom="10dp">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/tasksRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp">
-
-        <EditText
-            android:id="@+id/inputTask"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Новая задача"
-            android:background="#FFFFFF"
-            android:padding="8dp"
-            android:textColor="#000000"
-            android:textSize="16sp" />
-
-        <Button
-            android:id="@+id/addTaskButton"
-            android:text="Добавить"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp" />
-    </LinearLayout>
-    <TextView
-        android:id="@+id/routinesHeader"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:background="#009688"
-        android:padding="12dp"
-        android:text="Регулярные дела ▼"
-        android:textStyle="bold" />
+            android:text="Регулярные дела"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="#FFF8F8"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"/>
 
-    <TextView
-        android:id="@+id/habitsHeader"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/regularTaskList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"/>
+
+        <ImageView
+            android:id="@+id/addRegularTask"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_add"
+            android:layout_gravity="end"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="16dp"/>
+    </LinearLayout>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:background="#FF5722"
-        android:padding="12dp"
-        android:text="Привычки ▼"
-        android:textStyle="bold" />
+        android:background="@drawable/bg_gradient_orange"
+        android:orientation="vertical"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Привычки"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="#FFF8F8"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/habitsList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"/>
+
+        <ImageView
+            android:id="@+id/addHabits"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_add"
+            android:layout_gravity="end"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="16dp"/>
+    </LinearLayout>
 </LinearLayout>
