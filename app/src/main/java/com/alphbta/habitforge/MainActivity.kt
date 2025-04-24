@@ -34,10 +34,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var creativityText: TextView
     private lateinit var charismaText: TextView
     private lateinit var addTaskLauncher: ActivityResultLauncher<Intent>
-//    private var isTasksExpanded = false
-//    private lateinit var tasksRecyclerView: RecyclerView
-//    private lateinit var taskAdapter: TaskAdapter
-//    private val taskList = mutableListOf("Прочитать книгу", "Сделать зарядку")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

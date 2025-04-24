@@ -19,15 +19,16 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginEnd="8dp"
-            android:src= "@drawable/icon_menu"/>
-
+            android:src= "@drawable/icon_menu"
+            android:id="@+id/icon_menu"/>
 
         <TextView
             android:text="5 ур."
             android:textSize="14sp"
             android:layout_marginEnd="8dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:id="@+id/level"/>
 
         <LinearLayout
             android:layout_width="match_parent"
