@@ -1,5 +1,5 @@
 package com.alphbta.habitforge
-
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Bundle
 import android.view.View
@@ -34,7 +34,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var creativityText: TextView
     private lateinit var charismaText: TextView
     private lateinit var addTaskLauncher: ActivityResultLauncher<Intent>
-
+    private var isTasksExpanded = true
+    @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -58,6 +59,18 @@ class MainActivity : AppCompatActivity() {
         addTask.setOnClickListener {
             intent = Intent(this, AddTaskActivity::class.java)
             addTaskLauncher.launch(intent)
+        }
+
+
+        val toggleTasks = findViewById<ImageView>(R.id.toggleTasks)
+        val tasksContent = findViewById<LinearLayout>(R.id.tasksContent)
+
+        toggleTasks.setOnClickListener {
+            isTasksExpanded = !isTasksExpanded
+            tasksContent.visibility = if (isTasksExpanded) View.VISIBLE else View.GONE
+            toggleTasks.setImageResource(
+                if (isTasksExpanded) R.drawable.ic_expand_less else R.drawable.ic_expand_more
+            )
         }
 
 //        val tasksHeader = findViewById<TextView>(R.id.tasksHeader)
