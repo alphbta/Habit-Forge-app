@@ -27,14 +27,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/taskTitle" />
 
+    <TextView
+        android:id="@+id/taskDifficulty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Сложность"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/taskNote" />
+
+    <TextView
+        android:id="@+id/taskStat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Характеристика"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/taskDifficulty" />
+
     <LinearLayout
+        android:id="@+id/deadlineItem"
         android:layout_width="wrap_content"
         android:layout_height="18dp"
         android:layout_marginTop="6dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/taskNote"
+        app:layout_constraintTop_toBottomOf="@+id/taskStat"
         app:layout_constraintVertical_bias="1.0">
 
         <ImageView

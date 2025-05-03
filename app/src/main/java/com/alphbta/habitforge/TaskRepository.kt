@@ -14,6 +14,7 @@ class TaskRepository(private val dbHelper: DbHelper) {
             put("difficulty", task.difficulty)
             put("stat", task.stat)
             put("tags", Gson().toJson(task.tags))
+            put("deadline", task.deadline)
             put("reminder", task.reminder)
         }
         val db = dbHelper.writableDatabase

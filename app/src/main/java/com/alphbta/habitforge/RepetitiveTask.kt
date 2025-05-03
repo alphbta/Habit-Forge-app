@@ -11,6 +11,7 @@ data class RepetitiveTask(
     val tags: List<String> = emptyList(),
     val startDate: String,
     val repeatType: String,
+    val lastUpdated: String,
     val doneCount: Int,
     val missedCount: Int
 )
