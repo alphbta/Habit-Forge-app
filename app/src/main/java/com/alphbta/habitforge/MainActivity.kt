@@ -62,6 +62,29 @@ class MainActivity : AppCompatActivity() {
                 if (isTasksExpanded) R.drawable.ic_expand_less else R.drawable.ic_expand_more
             )
         }
+        val toggleRegularTasks = findViewById<ImageView>(R.id.toggleRegularTasks)
+        val regularTasksContent = findViewById<LinearLayout>(R.id.regularTasksContent)
+        var isRegularTasksExpanded = true
+
+        toggleRegularTasks.setOnClickListener {
+            isRegularTasksExpanded = !isRegularTasksExpanded
+            regularTasksContent.visibility = if (isRegularTasksExpanded) View.VISIBLE else View.GONE
+            toggleRegularTasks.setImageResource(
+                if (isRegularTasksExpanded) R.drawable.ic_expand_less else R.drawable.ic_expand_more
+            )
+        }
+
+        val toggleHabits = findViewById<ImageView>(R.id.toggleHabits)
+        val habitsContent = findViewById<LinearLayout>(R.id.habitsContent)
+        var isHabitsExpanded = true
+
+        toggleHabits.setOnClickListener {
+            isHabitsExpanded = !isHabitsExpanded
+            habitsContent.visibility = if (isHabitsExpanded) View.VISIBLE else View.GONE
+            toggleHabits.setImageResource(
+                if (isHabitsExpanded) R.drawable.ic_expand_less else R.drawable.ic_expand_more
+            )
+        }
 
 //        physique = findViewById(R.id.physique)
 //        intelligenceText = findViewById(R.id.intelligence)
