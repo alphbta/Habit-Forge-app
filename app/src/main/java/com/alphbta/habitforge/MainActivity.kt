@@ -1,5 +1,6 @@
 package com.alphbta.habitforge
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Bundle
 import android.view.View
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var charismaText: TextView
     private lateinit var addTaskLauncher: ActivityResultLauncher<Intent>
     private var isTasksExpanded = true
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -52,39 +54,60 @@ class MainActivity : AppCompatActivity() {
             intent = Intent(this, AddTaskActivity::class.java)
             addTaskLauncher.launch(intent)
         }
-        val toggleTasks = findViewById<ImageView>(R.id.toggleTasks)
+        var isTasksExpanded = false
+        var isRegularExpanded = false
+        var isHabitsExpanded = false
+
+
         val tasksContent = findViewById<LinearLayout>(R.id.tasksContent)
+        val toggleTasksIcon = findViewById<ImageView>(R.id.toggleTasks)
+        tasksContent.visibility = View.GONE
+        toggleTasksIcon.setImageResource(R.drawable.ic_expand_more)
 
-        toggleTasks.setOnClickListener {
+        toggleTasksIcon.setOnClickListener {
             isTasksExpanded = !isTasksExpanded
-            tasksContent.visibility = if (isTasksExpanded) View.VISIBLE else View.GONE
-            toggleTasks.setImageResource(
-                if (isTasksExpanded) R.drawable.ic_expand_less else R.drawable.ic_expand_more
-            )
-        }
-        val toggleRegularTasks = findViewById<ImageView>(R.id.toggleRegularTasks)
-        val regularTasksContent = findViewById<LinearLayout>(R.id.regularTasksContent)
-        var isRegularTasksExpanded = true
-
-        toggleRegularTasks.setOnClickListener {
-            isRegularTasksExpanded = !isRegularTasksExpanded
-            regularTasksContent.visibility = if (isRegularTasksExpanded) View.VISIBLE else View.GONE
-            toggleRegularTasks.setImageResource(
-                if (isRegularTasksExpanded) R.drawable.ic_expand_less else R.drawable.ic_expand_more
-            )
+            if (isTasksExpanded) {
+                tasksContent.expand()
+                toggleTasksIcon.setImageResource(R.drawable.ic_expand_less)
+            } else {
+                tasksContent.collapse()
+                toggleTasksIcon.setImageResource(R.drawable.ic_expand_more)
+            }
         }
 
-        val toggleHabits = findViewById<ImageView>(R.id.toggleHabits)
+        val regularContent = findViewById<LinearLayout>(R.id.regularContent)
+        val toggleRegular = findViewById<ImageView>(R.id.toggleRegular)
+        regularContent.visibility = View.GONE
+        toggleRegular.setImageResource(R.drawable.ic_expand_more)
+
+        toggleRegular.setOnClickListener {
+            isRegularExpanded = !isRegularExpanded
+            if (isRegularExpanded) {
+                regularContent.expand()
+                toggleRegular.setImageResource(R.drawable.ic_expand_less)
+            } else {
+                regularContent.collapse()
+                toggleRegular.setImageResource(R.drawable.ic_expand_more)
+            }
+        }
+
+
         val habitsContent = findViewById<LinearLayout>(R.id.habitsContent)
-        var isHabitsExpanded = true
+        val toggleHabits = findViewById<ImageView>(R.id.toggleHabits)
+        habitsContent.visibility = View.GONE
+        toggleHabits.setImageResource(R.drawable.ic_expand_more)
 
         toggleHabits.setOnClickListener {
             isHabitsExpanded = !isHabitsExpanded
-            habitsContent.visibility = if (isHabitsExpanded) View.VISIBLE else View.GONE
-            toggleHabits.setImageResource(
-                if (isHabitsExpanded) R.drawable.ic_expand_less else R.drawable.ic_expand_more
-            )
+            if (isHabitsExpanded) {
+                habitsContent.expand()
+                toggleHabits.setImageResource(R.drawable.ic_expand_less)
+            } else {
+                habitsContent.collapse()
+                toggleHabits.setImageResource(R.drawable.ic_expand_more)
+            }
         }
+
 
 //        physique = findViewById(R.id.physique)
 //        intelligenceText = findViewById(R.id.intelligence)
@@ -115,5 +138,28 @@ class MainActivity : AppCompatActivity() {
         intelligenceText.text = "Интеллект: ${stats["intelligence"]}"
         creativityText.text = "Творчество: ${stats["creativity"]}"
         charismaText.text = "Харизма: ${stats["charisma"]}"
+    }
+
+
+    fun View.expand(duration: Long = 200) {
+        this.visibility = View.VISIBLE
+        this.alpha = 0f
+        this.translationY = -20f
+        animate()
+            .alpha(1f)
+            .translationY(0f)
+            .setDuration(duration)
+            .start()
+    }
+
+    fun View.collapse(duration: Long = 200) {
+        animate()
+            .alpha(0f)
+            .translationY(-20f)
+            .setDuration(duration)
+            .withEndAction {
+                this.visibility = View.GONE
+            }
+            .start()
     }
 }

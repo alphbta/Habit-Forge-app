@@ -3,12 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#2D2D2D">
+
     <LinearLayout
         android:orientation="vertical"
         android:background="#2D2D2D"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp">
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -18,13 +20,11 @@
             android:gravity="center_vertical"
             android:layout_marginBottom="16dp">
 
-
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginEnd="8dp"
-                android:src= "@drawable/icon_menu"/>
-
+                android:src="@drawable/icon_menu" />
 
             <TextView
                 android:text="5 ур."
@@ -67,10 +67,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="10dp"
+                android:layout_margin="8dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -89,7 +86,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:contentDescription="Toggle tasks"
-                    android:src="@drawable/ic_expand_less" />
+                    android:src="@drawable/ic_expand_more" />
             </LinearLayout>
 
             <LinearLayout
@@ -114,7 +111,7 @@
                     android:layout_gravity="end"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginTop="16dp"/>
+                    android:layout_marginTop="16dp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -128,33 +125,28 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="10dp"
+                android:layout_margin="8dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/regularTasksTitle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:text="Регулярные дела"
                     android:textSize="28sp"
                     android:textStyle="bold"
-                    android:textColor="#FFF8F8" />
+                    android:textColor="#FFF8F8"
+                    android:layout_weight="1" />
 
                 <ImageView
-                    android:id="@+id/toggleRegularTasks"
+                    android:id="@+id/toggleRegular"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:contentDescription="Toggle regular tasks"
-                    android:src="@drawable/ic_expand_less" />
+                    android:src="@drawable/ic_expand_more" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/regularTasksContent"
+                android:id="@+id/regularContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -165,7 +157,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginStart="12dp"
-                    android:layout_marginEnd="12dp"/>
+                    android:layout_marginEnd="12dp" />
 
                 <ImageView
                     android:id="@+id/addRegularTask"
@@ -189,29 +181,24 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="10dp"
+                android:layout_margin="8dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/habitsTitle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:text="Привычки"
                     android:textSize="28sp"
                     android:textStyle="bold"
-                    android:textColor="#FFF8F8" />
+                    android:textColor="#FFF8F8"
+                    android:layout_weight="1" />
 
                 <ImageView
                     android:id="@+id/toggleHabits"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:contentDescription="Toggle habits"
-                    android:src="@drawable/ic_expand_less" />
+                    android:src="@drawable/ic_expand_more" />
             </LinearLayout>
 
             <LinearLayout
@@ -226,7 +213,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginStart="12dp"
-                    android:layout_marginEnd="12dp"/>
+                    android:layout_marginEnd="12dp" />
 
                 <ImageView
                     android:id="@+id/addHabits"
@@ -236,9 +223,8 @@
                     android:layout_gravity="end"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginTop="16dp"/>
+                    android:layout_marginTop="16dp" />
             </LinearLayout>
         </LinearLayout>
-
     </LinearLayout>
 </ScrollView>
