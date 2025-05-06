@@ -2,4 +2,16 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="background_dark">#2D2D2D</color>
+
+    <color name="easy">#4CAF50</color>
+    <color name="normal">#FFEB3B</color>
+    <color name="hard">#F44336</color>
+
+    <color name="physique">#FFFFFF</color>
+    <color name="intelligence">#0000FF</color>
+    <color name="creativity">#800080</color>
+    <color name="charisma">#9C27B0</color>
+
+    <color name="text_light">#FFFFFF</color>
 </resources>

@@ -1,36 +1,231 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="24dp"
-    android:background="#2D2D2D"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background_dark">
 
-    <EditText
-        android:id="@+id/taskTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Введите задачу"
-        android:textColor="#000000"
-        android:textColorHint="#888888"
-        android:background="#FFFFFF"
-        android:padding="12dp" />
-
-    <EditText
-        android:id="@+id/taskNote"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Введите описание"
-        android:textColor="#000000"
-        android:textColorHint="#888888"
-        android:background="#FFFFFF"
+    <LinearLayout
+        android:orientation="vertical"
         android:padding="12dp"
-        android:layout_marginTop="10dp"/>
-
-    <Button
-        android:id="@+id/saveButton"
-        android:text="Сохранить"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="96dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/taskTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Введите задачу"
+            android:textColor="#000000"
+            android:textColorHint="#888888"
+            android:background="#FFFFFF"
+            android:padding="12dp" />
+
+        <EditText
+            android:id="@+id/taskNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Введите описание"
+            android:textColor="#000000"
+            android:textColorHint="#888888"
+            android:background="#FFFFFF"
+            android:padding="12dp"
+            android:layout_marginTop="10dp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Сложность"
+            android:textColor="@color/text_light"
+            android:layout_marginTop="16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            android:weightSum="3">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <ImageButton
+                    android:id="@+id/easy"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/button_easy"
+                    android:contentDescription="Легко"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Легко"
+                    android:textColor="@color/text_light"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <ImageButton
+                    android:id="@+id/normal"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/button_normal"
+                    android:contentDescription="Нормально"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Нормально"
+                    android:textColor="@color/text_light"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <ImageButton
+                    android:id="@+id/hard"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/button_hard"
+                    android:contentDescription="Сложно"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Сложно"
+                    android:textColor="@color/text_light"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Характеристика"
+            android:textColor="@color/text_light"
+            android:layout_marginTop="16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:weightSum="4">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <ImageButton
+                    android:id="@+id/physique"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:background="@drawable/button_physique"
+                    android:contentDescription="Телосложение"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Телосложение"
+                    android:textColor="@color/text_light"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <ImageButton
+                    android:id="@+id/intelligence"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:background="@drawable/button_intelligence"
+                    android:contentDescription="Интеллект"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Интеллект"
+                    android:textColor="@color/text_light"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <ImageButton
+                    android:id="@+id/creativity"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:background="@drawable/button_creativity"
+                    android:contentDescription="Творчество"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Творчество"
+                    android:textColor="@color/text_light"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <ImageButton
+                    android:id="@+id/charisma"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:background="@drawable/button_charisma"
+                    android:contentDescription="Харизма"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Харизма"
+                    android:textColor="@color/text_light"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/saveButton"
+            android:text="Сохранить"
+            android:layout_marginTop="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FFFFFF"
+            android:textColor="#000000" />
+    </LinearLayout>
+</ScrollView>

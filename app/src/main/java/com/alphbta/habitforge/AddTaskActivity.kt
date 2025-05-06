@@ -6,6 +6,7 @@ import android.icu.util.Calendar
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -24,36 +25,36 @@ class AddTaskActivity : AppCompatActivity() {
         val taskTitle: EditText = findViewById(R.id.taskTitle)
         val taskNote: EditText = findViewById(R.id.taskNote)
         val saveButton = findViewById<Button>(R.id.saveButton)
-        val deadlineSetDate = findViewById<TextView>(R.id.deadlineSetDate)
-        val easyButton = findViewById<Button>(R.id.easy)
-        val normalButton = findViewById<Button>(R.id.normal)
-        val hardButton = findViewById<Button>(R.id.hard)
-        val physiqueButton = findViewById<Button>(R.id.physique)
-        val intelligenceButton = findViewById<Button>(R.id.intelligence)
-        val creativityButton = findViewById<Button>(R.id.creativity)
-        val charismaButton = findViewById<Button>(R.id.charisma)
+    //    val deadlineSetDate = findViewById<TextView>(R.id.deadlineSetDate)
+        val easyButton = findViewById<ImageButton>(R.id.easy)
+        val normalButton = findViewById<ImageButton>(R.id.normal)
+        val hardButton = findViewById<ImageButton>(R.id.hard)
+        val physiqueButton = findViewById<ImageButton>(R.id.physique)
+        val intelligenceButton = findViewById<ImageButton>(R.id.intelligence)
+        val creativityButton = findViewById<ImageButton>(R.id.creativity)
+        val charismaButton = findViewById<ImageButton>(R.id.charisma)
 
-        deadlineSetDate.setOnClickListener {
-            val calendar = Calendar.getInstance()
-            val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-                calendar.set(Calendar.YEAR, year)
-                calendar.set(Calendar.MONTH, month)
-                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-                val locale = Locale("ru")
-                val sdf = SimpleDateFormat("d MMMM yyyy", locale)
-                val formattedDate = sdf.format(calendar.time)
-                deadlineSetDate.text = formattedDate
+        //deadlineSetDate.setOnClickListener {
+        //    val calendar = Calendar.getInstance()
+         //   val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+         //       calendar.set(Calendar.YEAR, year)
+//calendar.set(Calendar.MONTH, month)
+  //              calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+   //             val locale = Locale("ru")
+    //            val sdf = SimpleDateFormat("d MMMM yyyy", locale)
+     //           val formattedDate = sdf.format(calendar.time)
+      //          deadlineSetDate.text = formattedDate
 
-                val dbFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-                deadlineDate = dbFormat.format(calendar.time)
-            }
-            DatePickerDialog(this,
-                dateSetListener,
-                calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH)
-            ).show()
-        }
+         //       val dbFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        //        deadlineDate = dbFormat.format(calendar.time)
+         //   }
+        //    DatePickerDialog(this,
+         //       dateSetListener,
+         //       calendar.get(Calendar.YEAR),
+          //      calendar.get(Calendar.MONTH),
+          //      calendar.get(Calendar.DAY_OF_MONTH)
+         //   ).show()
+       // }
 
         easyButton.setOnClickListener { difficultyTask = "easy" }
         normalButton.setOnClickListener{ difficultyTask = "normal" }
