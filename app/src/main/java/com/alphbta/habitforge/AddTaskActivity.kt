@@ -78,7 +78,7 @@ class AddTaskActivity : AppCompatActivity() {
                     isDone = false,
                     subtasks = null,
                     difficulty = difficultyTask,
-                    stat = "intelligence",
+                    stat = statTask!!,
                     tags = null,
                     deadline = deadlineDate,
                     reminder = null
