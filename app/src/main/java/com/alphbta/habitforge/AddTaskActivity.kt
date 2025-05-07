@@ -34,6 +34,7 @@ class AddTaskActivity : AppCompatActivity() {
         val creativityButton = findViewById<ImageButton>(R.id.creativity)
         val charismaButton = findViewById<ImageButton>(R.id.charisma)
 
+
         //deadlineSetDate.setOnClickListener {
         //    val calendar = Calendar.getInstance()
          //   val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
@@ -88,5 +89,38 @@ class AddTaskActivity : AppCompatActivity() {
                 finish()
             }
         }
+
+        val difficultyButtons = listOf(easyButton, normalButton, hardButton)
+        val statButtons = listOf(physiqueButton, intelligenceButton, creativityButton, charismaButton)
+
+        difficultyButtons.forEach { button ->
+            button.setOnClickListener {
+                difficultyButtons.forEach { it.isSelected = false }
+                button.isSelected = true
+
+                difficultyTask = when (button.id) {
+                    R.id.easy -> "easy"
+                    R.id.normal -> "normal"
+                    R.id.hard -> "hard"
+                    else -> "easy"
+                }
+            }
+        }
+
+        statButtons.forEach { button ->
+            button.setOnClickListener {
+                statButtons.forEach { it.isSelected = false }
+                button.isSelected = true
+
+                statTask = when (button.id) {
+                    R.id.physique -> "physique"
+                    R.id.intelligence -> "intelligence"
+                    R.id.creativity -> "creativity"
+                    R.id.charisma -> "charisma"
+                    else -> null
+                }
+            }
+        }
+
     }
 }

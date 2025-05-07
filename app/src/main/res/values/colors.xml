@@ -5,8 +5,11 @@
     <color name="background_dark">#2D2D2D</color>
 
     <color name="easy">#4CAF50</color>
+    <color name="easy2">#003302</color>
     <color name="normal">#FFEB3B</color>
+    <color name="norma2l">#615805</color>
     <color name="hard">#F44336</color>
+    <color name="hard2">#4D0D07</color>
 
     <color name="physique">#FFFFFF</color>
     <color name="intelligence">#0000FF</color>

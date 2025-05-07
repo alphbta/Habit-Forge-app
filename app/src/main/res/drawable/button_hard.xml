@@ -1,6 +1,4 @@
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle">
-    <solid android:color="@color/hard" />
-    <corners android:radius="8dp" />
-    <padding android:left="8dp" android:top="8dp" android:right="8dp" android:bottom="8dp" />
-</shape>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true" android:drawable="@drawable/button_hard_checked"/>
+    <item android:drawable="@drawable/hard_default"/>
+</selector>
