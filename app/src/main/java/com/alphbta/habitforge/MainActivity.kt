@@ -26,8 +26,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var intelligenceText: TextView
     private lateinit var creativityText: TextView
     private lateinit var charismaText: TextView
-    private lateinit var addTaskLauncher: ActivityResultLauncher<Intent>
     private var isTasksExpanded = true
+    private lateinit var taskAdapter: TaskAdapter
+
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +38,10 @@ class MainActivity : AppCompatActivity() {
         val db = DbHelper(this, null)
         val tasks = TaskRepository(db).getAllTasks()
         val tasksRecyclerView: RecyclerView = findViewById(R.id.taskList)
-        val taskAdapter = TaskAdapter(tasks, this)
+        taskAdapter = TaskAdapter(tasks, this) {
+            task: Task -> completeTask(task)
+        }
+
         val addTask: ImageView = findViewById(R.id.addTask)
         val addTaskLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
@@ -108,7 +112,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
 //        physique = findViewById(R.id.physique)
 //        intelligenceText = findViewById(R.id.intelligence)
 //        creativityText = findViewById(R.id.creativity)
@@ -132,6 +135,7 @@ class MainActivity : AppCompatActivity() {
 //        }
 
     }
+
     private fun updateAllTexts() {
         val stats = StatsManager.getAllStats(this)
         physique.text = "Телосложение: ${stats["physique"]}"
@@ -140,8 +144,21 @@ class MainActivity : AppCompatActivity() {
         charismaText.text = "Харизма: ${stats["charisma"]}"
     }
 
+    private fun completeTask(task: Task) {
+        val db = DbHelper(this, null)
+        val taskRepository = TaskRepository(db)
+        val delete = taskRepository.deleteTask(task.id.toString())
+        if (!delete) {
+            Toast.makeText(this,
+                "Произошла ошибка с удалением",
+                Toast.LENGTH_LONG)
+                .show()
+        }
 
-    fun View.expand(duration: Long = 200) {
+        taskAdapter.updateTasks(taskRepository.getAllTasks())
+    }
+
+    private fun View.expand(duration: Long = 200) {
         this.visibility = View.VISIBLE
         this.alpha = 0f
         this.translationY = -20f
@@ -152,7 +169,7 @@ class MainActivity : AppCompatActivity() {
             .start()
     }
 
-    fun View.collapse(duration: Long = 200) {
+    private fun View.collapse(duration: Long = 200) {
         animate()
             .alpha(0f)
             .translationY(-20f)

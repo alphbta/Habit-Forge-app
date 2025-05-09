@@ -1,16 +1,21 @@
 package com.alphbta.habitforge
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-class TaskAdapter(var tasks: List<Task>, var context: Context): RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
+class TaskAdapter(private var tasks: List<Task>,
+                  private var context: Context,
+                  private var onButtonClick: (Task) -> Unit):
+    RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
     class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val taskTitle: TextView = itemView.findViewById(R.id.taskTitle)
@@ -19,9 +24,12 @@ class TaskAdapter(var tasks: List<Task>, var context: Context): RecyclerView.Ada
         val deadlineItem: LinearLayout = itemView.findViewById(R.id.deadlineItem)
         val taskDifficulty: TextView = itemView.findViewById(R.id.taskDifficulty)
         val taskStat: TextView = itemView.findViewById(R.id.taskStat)
+        val completeButton: Button = itemView.findViewById(R.id.complete)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup,
+                                    viewType: Int): TaskViewHolder {
+
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_task, parent, false)
         return TaskViewHolder(view)
@@ -43,6 +51,10 @@ class TaskAdapter(var tasks: List<Task>, var context: Context): RecyclerView.Ada
             else holder.deadlineItem.visibility = View.GONE
             holder.taskDifficulty.text = it.difficulty
             holder.taskStat.text = it.stat
+
+            holder.completeButton.setOnClickListener {
+                onButtonClick(tasks[position])
+            }
         }
     }
 
@@ -58,6 +70,7 @@ class TaskAdapter(var tasks: List<Task>, var context: Context): RecyclerView.Ada
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateTasks(newTasks: List<Task>) {
         tasks = newTasks
         notifyDataSetChanged()
