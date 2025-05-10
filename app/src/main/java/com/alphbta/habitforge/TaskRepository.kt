@@ -1,6 +1,7 @@
 package com.alphbta.habitforge
 
 import android.content.ContentValues
+import android.widget.Toast
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -28,7 +29,7 @@ class TaskRepository(private val dbHelper: DbHelper) {
         val gson = Gson()
 
         if (cursor.moveToFirst()) {
-            while (!cursor.isAfterLast()) {
+            while (!cursor.isAfterLast) {
                 val id = cursor.getInt(cursor.getColumnIndexOrThrow("id"))
                 val title = cursor.getString(cursor.getColumnIndexOrThrow("title"))
                 val note = cursor.getString(cursor.getColumnIndexOrThrow("note"))
@@ -63,5 +64,12 @@ class TaskRepository(private val dbHelper: DbHelper) {
         db.close()
 
         return tasks
+    }
+
+    fun deleteTask(_id: String): Boolean {
+        val db = dbHelper.writableDatabase
+        val result = db.delete("tasks", "id=?", arrayOf(_id))
+        db.close()
+        return result != -1
     }
 }
