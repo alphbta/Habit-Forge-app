@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="green">#4CAF50</color>
+    <color name="orange">#FF9800</color>
+    <color name="red">#F44336</color>
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="background_dark">#2D2D2D</color>
 
-    <color name="easy">#4CAF50</color>
-    <color name="easy2">#003302</color>
-    <color name="normal">#FFEB3B</color>
-    <color name="norma2l">#615805</color>
-    <color name="hard">#F44336</color>
-    <color name="hard2">#4D0D07</color>
+    <color name="easy">#488B2F</color>
+    <color name="easy2">#7EBE54</color>
+    <color name="normal">#FFE735</color>
+    <color name="norma2l">#E6C645</color>
+    <color name="hard">#FF0000</color>
+    <color name="hard2">#EF7D7D</color>
 
     <color name="physique">#FFFFFF</color>
     <color name="intelligence">#0000FF</color>
