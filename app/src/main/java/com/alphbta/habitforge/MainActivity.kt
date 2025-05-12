@@ -1,5 +1,6 @@
 package com.alphbta.habitforge
 
+import android.graphics.Rect
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Bundle
@@ -9,17 +10,11 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import android.widget.Button
-import android.widget.EditText
-import android.content.Intent
-import android.view.WindowManager
 import android.widget.ImageView
-import androidx.activity.result.contract.ActivityResultContracts
+import android.content.Intent
 import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContract
+import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-
 
 class MainActivity : AppCompatActivity() {
     private lateinit var physique: TextView
@@ -34,13 +29,31 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         val db = DbHelper(this, null)
         val tasks = TaskRepository(db).getAllTasks()
         val tasksRecyclerView: RecyclerView = findViewById(R.id.taskList)
-        taskAdapter = TaskAdapter(tasks, this) {
-            task: Task -> completeTask(task)
+
+        taskAdapter = TaskAdapter(tasks, this) { task: Task ->
+            completeTask(task)
         }
+
+        tasksRecyclerView.layoutManager = LinearLayoutManager(this)
+        tasksRecyclerView.adapter = taskAdapter
+
+        tasksRecyclerView.addItemDecoration(object : RecyclerView.ItemDecoration() {
+            override fun getItemOffsets(
+                outRect: Rect,
+                view: View,
+                parent: RecyclerView,
+                state: RecyclerView.State
+            ) {
+                val position = parent.getChildAdapterPosition(view)
+                if (position == 0) {
+                    outRect.top = 0
+                }
+                outRect.bottom = 32
+            }
+        })
 
         val addTask: ImageView = findViewById(R.id.addTask)
         val addTaskLauncher = registerForActivityResult(
@@ -51,17 +64,14 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        tasksRecyclerView.layoutManager = LinearLayoutManager(this)
-        tasksRecyclerView.adapter = taskAdapter
-
         addTask.setOnClickListener {
             intent = Intent(this, AddTaskActivity::class.java)
             addTaskLauncher.launch(intent)
         }
+
         var isTasksExpanded = false
         var isRegularExpanded = false
         var isHabitsExpanded = false
-
 
         val tasksContent = findViewById<LinearLayout>(R.id.tasksContent)
         val toggleTasksIcon = findViewById<ImageView>(R.id.toggleTasks)
@@ -95,7 +105,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
         val habitsContent = findViewById<LinearLayout>(R.id.habitsContent)
         val toggleHabits = findViewById<ImageView>(R.id.toggleHabits)
         habitsContent.visibility = View.GONE
@@ -112,28 +121,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-//        physique = findViewById(R.id.physique)
-//        intelligenceText = findViewById(R.id.intelligence)
-//        creativityText = findViewById(R.id.creativity)
-//        charismaText = findViewById(R.id.charisma)
-//        updateAllTexts()
-//
-//        tempButton.setOnClickListener {
-//            val statNumber = (0..3).random()
-//            when (statNumber) {
-//                0 -> StatsManager.addToStat(this, "physique")
-//                1 -> StatsManager.addToStat(this, "intelligence")
-//                2 -> StatsManager.addToStat(this, "creativity")
-//                3 -> StatsManager.addToStat(this, "charisma")
-//                else -> Toast.makeText(
-//                    this,
-//                    "Something went wrong with adding to stat",
-//                    Toast.LENGTH_LONG
-//                ).show()
-//            }
-//            updateAllTexts()
-//        }
-
+        // physique = findViewById(R.id.physique)
+        // intelligenceText = findViewById(R.id.intelligence)
+        // creativityText = findViewById(R.id.creativity)
+        // charismaText = findViewById(R.id.charisma)
+        // updateAllTexts()
     }
 
     private fun updateAllTexts() {
@@ -149,10 +141,11 @@ class MainActivity : AppCompatActivity() {
         val taskRepository = TaskRepository(db)
         val delete = taskRepository.deleteTask(task.id.toString())
         if (!delete) {
-            Toast.makeText(this,
+            Toast.makeText(
+                this,
                 "Произошла ошибка с удалением",
-                Toast.LENGTH_LONG)
-                .show()
+                Toast.LENGTH_LONG
+            ).show()
         }
 
         taskAdapter.updateTasks(taskRepository.getAllTasks())
