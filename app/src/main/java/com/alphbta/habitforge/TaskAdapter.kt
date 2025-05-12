@@ -95,6 +95,8 @@ class TaskAdapter(
         }
     }
 
+
+
     @SuppressLint("NotifyDataSetChanged")
     fun updateTasks(newTasks: List<Task>) {
         tasks = newTasks
