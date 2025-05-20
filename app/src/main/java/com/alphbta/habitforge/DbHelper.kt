@@ -40,10 +40,8 @@ class DbHelper(val context: Context, val factory: SQLiteDatabase.CursorFactory?)
                 subtasks TEXT, 
                 difficulty TEXT NOT NULL DEFAULT 'easy', 
                 stat TEXT NOT NULL, 
-                tags TEXT, deadline TEXT, 
-                startDate TEXT NOT NULL, 
-                lastUpdated TEXT, 
-                isPositive INTEGER NOT NULL DEFAULT 1, 
+                tags TEXT,
+                lastUpdated TEXT,
                 streak INTEGER DEFAULT 0, 
                 doneCount INTEGER DEFAULT 0, 
                 missedCount INTEGER DEFAULT 0

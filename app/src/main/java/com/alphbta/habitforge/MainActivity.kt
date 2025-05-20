@@ -23,8 +23,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var charismaText: TextView
     private var isTasksExpanded = true
     private lateinit var taskAdapter: TaskAdapter
+    private lateinit var habitAdapter: HabitAdapter
 
-    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -32,13 +32,22 @@ class MainActivity : AppCompatActivity() {
         val db = DbHelper(this, null)
         val tasks = TaskRepository(db).getAllTasks()
         val tasksRecyclerView: RecyclerView = findViewById(R.id.taskList)
+        val habits = HabitRepository(db).getAllHabits()
+        val habitsRecyclerView: RecyclerView = findViewById(R.id.habitsList)
 
         taskAdapter = TaskAdapter(tasks, this) { task: Task ->
             completeTask(task)
         }
 
+        habitAdapter = HabitAdapter(habits, this) { habit: Habit ->
+            completeHabit(habit)
+        }
+
         tasksRecyclerView.layoutManager = LinearLayoutManager(this)
         tasksRecyclerView.adapter = taskAdapter
+
+        habitsRecyclerView.layoutManager = LinearLayoutManager(this)
+        habitsRecyclerView.adapter = habitAdapter
 
         tasksRecyclerView.addItemDecoration(object : RecyclerView.ItemDecoration() {
             override fun getItemOffsets(
@@ -67,6 +76,20 @@ class MainActivity : AppCompatActivity() {
         addTask.setOnClickListener {
             intent = Intent(this, AddTaskActivity::class.java)
             addTaskLauncher.launch(intent)
+        }
+
+        val addHabit: ImageView = findViewById(R.id.addHabits)
+        val addHabitLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                habitAdapter.updateHabits(HabitRepository(db).getAllHabits())
+            }
+        }
+
+        addHabit.setOnClickListener {
+            intent = Intent(this, AddHabitActivity::class.java)
+            addHabitLauncher.launch(intent)
         }
 
         var isTasksExpanded = false
@@ -149,6 +172,21 @@ class MainActivity : AppCompatActivity() {
         }
 
         taskAdapter.updateTasks(taskRepository.getAllTasks())
+    }
+
+    private fun completeHabit(habit: Habit) {
+        val db = DbHelper(this, null)
+        val habitRepository = HabitRepository(db)
+        val delete = habitRepository.deleteHabit(habit.id.toString())
+        if (!delete) {
+            Toast.makeText(
+                this,
+                "Произошла ошибка с удалением",
+                Toast.LENGTH_LONG
+            ).show()
+        }
+
+        habitAdapter.updateHabits(habitRepository.getAllHabits())
     }
 
     private fun View.expand(duration: Long = 200) {
