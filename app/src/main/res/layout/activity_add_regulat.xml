@@ -235,6 +235,15 @@
             android:layout_marginTop="16dp"
             android:background="@drawable/deadline_background"
             android:gravity="center_vertical" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Повторять по дням"
+            android:textColor="@color/text_light"
+            android:layout_marginTop="24dp"
+            android:textSize="16sp" />
+
+
 
         <Button
             android:id="@+id/saveButton"
