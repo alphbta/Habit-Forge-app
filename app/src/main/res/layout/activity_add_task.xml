@@ -139,8 +139,8 @@
 
                 <ImageButton
                     android:id="@+id/physique"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:background="@drawable/button_physique"
                     android:contentDescription="Телосложение"/>
                 <TextView
@@ -161,8 +161,8 @@
 
                 <ImageButton
                     android:id="@+id/intelligence"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:background="@drawable/button_intelligence"
                     android:contentDescription="Интеллект"/>
                 <TextView
@@ -183,8 +183,8 @@
 
                 <ImageButton
                     android:id="@+id/creativity"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:background="@drawable/button_creativity"
                     android:contentDescription="Творчество"/>
                 <TextView
@@ -205,8 +205,8 @@
 
                 <ImageButton
                     android:id="@+id/charisma"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:background="@drawable/button_charisma"
                     android:contentDescription="Харизма"/>
                 <TextView
