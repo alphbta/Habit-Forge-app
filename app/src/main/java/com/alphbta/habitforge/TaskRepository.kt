@@ -1,8 +1,6 @@
 package com.alphbta.habitforge
 
 import android.content.ContentValues
-//import com.google.gson.Gson
-//import com.google.gson.reflect.TypeToken
 
 class TaskRepository(private val dbHelper: DbHelper) {
     fun addTask(task: Task) {
@@ -27,7 +25,6 @@ class TaskRepository(private val dbHelper: DbHelper) {
         val db = dbHelper.writableDatabase
         val cursor = db.rawQuery("SELECT * FROM tasks", null)
         val tasks = mutableListOf<Task>()
-//        val gson = Gson()
 
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast) {

@@ -84,7 +84,7 @@ calendar.set(Calendar.MONTH, month)
                     deadline = deadlineDate,
                     reminder = null
                 )
-                TaskRepository(DbHelper(this, null)).addTask(task)
+                TaskRepository(DbHelper.getInstance(this)).addTask(task)
                 setResult(RESULT_OK)
                 finish()
             }

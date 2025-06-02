@@ -1,9 +1,10 @@
 package com.alphbta.habitforge
 
 import android.content.ContentValues
+import android.util.Log
 
 class HabitRepository(private val dbHelper: DbHelper) {
-    fun addHabit(habit: Habit) {
+    fun addHabit(habit: Habit) : Boolean {
         val values = ContentValues().apply {
             put("title", habit.title)
             put("note", habit.note)
@@ -18,7 +19,9 @@ class HabitRepository(private val dbHelper: DbHelper) {
             put("missedCount", 0)
         }
         val db = dbHelper.writableDatabase
-        db.insert("habits", null, values)
+        val result = db.insert("habits", null, values)
+        Log.d("DB_INSERT", "inser result: $result")
+        return result != -1L
     }
 
     fun getAllHabits(): List<Habit> {

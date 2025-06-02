@@ -55,7 +55,7 @@ class AddHabitActivity : AppCompatActivity() {
                     0,
                     0
                 )
-                HabitRepository(DbHelper(this, null)).addHabit(habit)
+                HabitRepository(DbHelper.getInstance(this)).addHabit(habit)
                 setResult(RESULT_OK)
                 finish()
             }

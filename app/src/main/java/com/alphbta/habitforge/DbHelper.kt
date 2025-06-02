@@ -4,8 +4,18 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class DbHelper(val context: Context, val factory: SQLiteDatabase.CursorFactory?) :
-    SQLiteOpenHelper(context, "habitForgeDB", factory, 1) {
+class DbHelper private constructor(val context: Context) : SQLiteOpenHelper(context, "habitForgeDB", null, 1) {
+
+    companion object {
+        @Volatile
+        private var INSTANCE: DbHelper? = null
+
+        fun getInstance(context: Context): DbHelper {
+            return INSTANCE ?: synchronized(this) {
+                INSTANCE ?: DbHelper(context.applicationContext).also { INSTANCE = it }
+            }
+        }
+    }
 
     override fun onCreate(db: SQLiteDatabase?) {
         val tasks = """CREATE TABLE tasks (
@@ -21,7 +31,8 @@ class DbHelper(val context: Context, val factory: SQLiteDatabase.CursorFactory?)
             )"""
         val repetitiveTasks = """CREATE TABLE repetitive_tasks (
                 id INTEGER PRIMARY KEY AUTOINCREMENT, 
-                title TEXT NOT NULL, 
+                title TEXT NOT NULL,
+                note TEXT,
                 isDone INTEGER NOT NULL DEFAULT 0, 
                 subtasks TEXT, 
                 difficulty TEXT NOT NULL DEFAULT 'easy', 
@@ -35,7 +46,8 @@ class DbHelper(val context: Context, val factory: SQLiteDatabase.CursorFactory?)
             )"""
         val habits = """CREATE TABLE habits (
                 id INTEGER PRIMARY KEY AUTOINCREMENT, 
-                title TEXT NOT NULL, 
+                title TEXT NOT NULL,
+                note TEXT,
                 isDone INTEGER NOT NULL DEFAULT 0, 
                 subtasks TEXT, 
                 difficulty TEXT NOT NULL DEFAULT 'easy', 

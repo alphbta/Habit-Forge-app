@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val db = DbHelper(this, null)
+        val db = DbHelper.getInstance(this)
         val tasks = TaskRepository(db).getAllTasks()
         val tasksRecyclerView: RecyclerView = findViewById(R.id.taskList)
         val habits = HabitRepository(db).getAllHabits()
@@ -160,7 +160,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun completeTask(task: Task) {
-        val db = DbHelper(this, null)
+        val db = DbHelper.getInstance(this)
         val taskRepository = TaskRepository(db)
         val delete = taskRepository.deleteTask(task.id.toString())
         if (!delete) {
@@ -175,7 +175,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun completeHabit(habit: Habit) {
-        val db = DbHelper(this, null)
+        val db = DbHelper.getInstance(this)
         val habitRepository = HabitRepository(db)
         val delete = habitRepository.deleteHabit(habit.id.toString())
         if (!delete) {
