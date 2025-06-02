@@ -23,6 +23,11 @@
             android:label="Задача"
             android:parentActivityName=".MainActivity"/>
         <activity
+            android:name=".AddRegularActivity"
+            android:exported="false"
+            android:label="Регулярные дела"
+            android:parentActivityName=".MainActivity"/>
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.HabitForge.NoActionBar">

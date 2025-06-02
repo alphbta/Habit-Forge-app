@@ -21,9 +21,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var intelligenceText: TextView
     private lateinit var creativityText: TextView
     private lateinit var charismaText: TextView
-    private var isTasksExpanded = true
     private lateinit var taskAdapter: TaskAdapter
     private lateinit var habitAdapter: HabitAdapter
+    private lateinit var regularAdapter: RegularAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +34,8 @@ class MainActivity : AppCompatActivity() {
         val tasksRecyclerView: RecyclerView = findViewById(R.id.taskList)
         val habits = HabitRepository(db).getAllHabits()
         val habitsRecyclerView: RecyclerView = findViewById(R.id.habitsList)
+        val regulars = RegularRepository(db).getAllRegulars()
+        val regularsRecyclerView: RecyclerView = findViewById(R.id.regularList)
 
         taskAdapter = TaskAdapter(tasks, this) { task: Task ->
             completeTask(task)
@@ -43,11 +45,18 @@ class MainActivity : AppCompatActivity() {
             completeHabit(habit)
         }
 
+        regularAdapter = RegularAdapter(regulars, this) { regular: Regular ->
+            completeRegular(regular)
+        }
+
         tasksRecyclerView.layoutManager = LinearLayoutManager(this)
         tasksRecyclerView.adapter = taskAdapter
 
         habitsRecyclerView.layoutManager = LinearLayoutManager(this)
         habitsRecyclerView.adapter = habitAdapter
+
+        regularsRecyclerView.layoutManager = LinearLayoutManager(this)
+        regularsRecyclerView.adapter = regularAdapter
 
         tasksRecyclerView.addItemDecoration(object : RecyclerView.ItemDecoration() {
             override fun getItemOffsets(
@@ -90,6 +99,20 @@ class MainActivity : AppCompatActivity() {
         addHabit.setOnClickListener {
             intent = Intent(this, AddHabitActivity::class.java)
             addHabitLauncher.launch(intent)
+        }
+
+        val addRegular: ImageView = findViewById(R.id.addRegularTask)
+        val addRegularLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                regularAdapter.updateRegulars(RegularRepository(db).getAllRegulars())
+            }
+        }
+
+        addRegular.setOnClickListener {
+            intent = Intent(this, AddRegularActivity::class.java)
+            addRegularLauncher.launch(intent)
         }
 
         var isTasksExpanded = false
@@ -187,6 +210,21 @@ class MainActivity : AppCompatActivity() {
         }
 
         habitAdapter.updateHabits(habitRepository.getAllHabits())
+    }
+
+    private fun completeRegular(regular: Regular) {
+        val db = DbHelper.getInstance(this)
+        val regularRepository = RegularRepository(db)
+        val delete = regularRepository.deleteRegular(regular.id.toString())
+        if (!delete) {
+            Toast.makeText(
+                this,
+                "Произошла ошибка с удалением",
+                Toast.LENGTH_LONG
+            ).show()
+        }
+
+        regularAdapter.updateRegulars(regularRepository.getAllRegulars())
     }
 
     private fun View.expand(duration: Long = 200) {

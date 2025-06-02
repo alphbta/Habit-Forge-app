@@ -12,7 +12,7 @@
         android:padding="12dp">
 
         <EditText
-            android:id="@+id/habitTitle"
+            android:id="@+id/regularTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FFFFFF"
@@ -22,7 +22,7 @@
             android:textColorHint="#888888" />
 
         <EditText
-            android:id="@+id/habitNote"
+            android:id="@+id/regularNote"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"

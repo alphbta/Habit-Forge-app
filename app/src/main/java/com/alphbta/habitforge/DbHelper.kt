@@ -29,7 +29,7 @@ class DbHelper private constructor(val context: Context) : SQLiteOpenHelper(cont
                 tags TEXT, deadline TEXT, 
                 reminder TEXT
             )"""
-        val repetitiveTasks = """CREATE TABLE repetitive_tasks (
+        val regular = """CREATE TABLE regulars (
                 id INTEGER PRIMARY KEY AUTOINCREMENT, 
                 title TEXT NOT NULL,
                 note TEXT,
@@ -37,9 +37,10 @@ class DbHelper private constructor(val context: Context) : SQLiteOpenHelper(cont
                 subtasks TEXT, 
                 difficulty TEXT NOT NULL DEFAULT 'easy', 
                 stat TEXT NOT NULL, 
-                tags TEXT, deadline TEXT, 
-                startDate TEXT NOT NULL, 
+                tags TEXT, deadline TEXT,
                 lastUpdated TEXT, 
+                streak INTEGER DEFAULT 0,
+                freezeCount INTEGER DEFAULT 0,
                 repeatType TEXT NOT NULL, 
                 doneCount INTEGER DEFAULT 0, 
                 missedCount INTEGER DEFAULT 0
@@ -59,13 +60,13 @@ class DbHelper private constructor(val context: Context) : SQLiteOpenHelper(cont
                 missedCount INTEGER DEFAULT 0
             )"""
         db!!.execSQL(tasks)
-        db.execSQL(repetitiveTasks)
+        db.execSQL(regular)
         db.execSQL(habits)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db!!.execSQL("DROP TABLE IF EXISTS tasks")
-        db.execSQL("DROP TABLE IF EXISTS repetitive_tasks")
+        db.execSQL("DROP TABLE IF EXISTS regular")
         db.execSQL("DROP TABLE IF EXISTS habits")
         onCreate(db)
     }

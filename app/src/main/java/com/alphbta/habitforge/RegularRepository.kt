@@ -2,29 +2,31 @@ package com.alphbta.habitforge
 
 import android.content.ContentValues
 
-class HabitRepository(private val dbHelper: DbHelper) {
-    fun addHabit(habit: Habit) {
+class RegularRepository(private val dbHelper: DbHelper) {
+    fun addRegular(regular: Regular) {
         val values = ContentValues().apply {
-            put("title", habit.title)
-            put("note", habit.note)
-            put("isDone", if (habit.isDone) 1 else 0)
+            put("title", regular.title)
+            put("note", regular.note)
+            put("isDone", if (regular.isDone) 1 else 0)
             put("subtasks", "")
-            put("difficulty", habit.difficulty)
-            put("stat", habit.stat)
+            put("difficulty", regular.difficulty)
+            put("stat", regular.stat)
             put("tags", "")
-            put("lastUpdated", habit.lastUpdated)
-            put("streak", 0)
-            put("doneCount", 0)
-            put("missedCount", 0)
+            put("lastUpdated", regular.lastUpdated)
+            put("repeatType", regular.repeatType)
+            put("streak", regular.streak)
+            put("freezeCount", regular.freezeCount)
+            put("doneCount", regular.doneCount)
+            put("missedCount", regular.missedCount)
         }
         val db = dbHelper.writableDatabase
-        db.insert("habits", null, values)
+        db.insert("regulars", null, values)
     }
 
-    fun getAllHabits(): List<Habit> {
+    fun getAllRegulars(): List<Regular> {
         val db = dbHelper.writableDatabase
-        val cursor = db.rawQuery("SELECT * FROM habits", null)
-        val habits = mutableListOf<Habit>()
+        val cursor = db.rawQuery("SELECT * FROM regulars", null)
+        val regulars = mutableListOf<Regular>()
 
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast) {
@@ -38,10 +40,12 @@ class HabitRepository(private val dbHelper: DbHelper) {
                 val tags = null
                 val lastUpdated = cursor.getString(cursor.getColumnIndexOrThrow("lastUpdated"))
                 val streak = cursor.getInt(cursor.getColumnIndexOrThrow("streak"))
+                val freezeCount = cursor.getInt(cursor.getColumnIndexOrThrow("freezeCount"))
+                val repeatType = cursor.getString(cursor.getColumnIndexOrThrow("repeatType"))
                 val doneCount = cursor.getInt(cursor.getColumnIndexOrThrow("doneCount"))
                 val missedCount = cursor.getInt(cursor.getColumnIndexOrThrow("missedCount"))
 
-                val habit = Habit(
+                val regular = Regular(
                     id,
                     title,
                     note,
@@ -52,10 +56,12 @@ class HabitRepository(private val dbHelper: DbHelper) {
                     tags,
                     lastUpdated,
                     streak,
+                    freezeCount,
+                    repeatType,
                     doneCount,
                     missedCount
                 )
-                habits.add(habit)
+                regulars.add(regular)
                 cursor.moveToNext()
             }
         }
@@ -63,12 +69,12 @@ class HabitRepository(private val dbHelper: DbHelper) {
         cursor.close()
         db.close()
 
-        return habits
+        return regulars
     }
 
-    fun deleteHabit(_id: String): Boolean {
+    fun deleteRegular(_id: String): Boolean {
         val db = dbHelper.writableDatabase
-        val result = db.delete("habits", "id=?", arrayOf(_id))
+        val result = db.delete("regulars", "id=?", arrayOf(_id))
         db.close()
         return result != -1
     }
