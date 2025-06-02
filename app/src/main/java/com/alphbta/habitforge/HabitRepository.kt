@@ -4,7 +4,7 @@ import android.content.ContentValues
 import android.util.Log
 
 class HabitRepository(private val dbHelper: DbHelper) {
-    fun addHabit(habit: Habit) : Boolean {
+    fun addHabit(habit: Habit) {
         val values = ContentValues().apply {
             put("title", habit.title)
             put("note", habit.note)
@@ -19,9 +19,7 @@ class HabitRepository(private val dbHelper: DbHelper) {
             put("missedCount", 0)
         }
         val db = dbHelper.writableDatabase
-        val result = db.insert("habits", null, values)
-        Log.d("DB_INSERT", "inser result: $result")
-        return result != -1L
+        db.insert("habits", null, values)
     }
 
     fun getAllHabits(): List<Habit> {
