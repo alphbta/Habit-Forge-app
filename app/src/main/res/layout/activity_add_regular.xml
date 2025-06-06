@@ -32,7 +32,6 @@
             android:textColor="#000000"
             android:textColorHint="#888888" />
 
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -225,6 +224,7 @@
                     android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -233,83 +233,92 @@
             android:layout_marginTop="24dp"
             android:textSize="16sp" />
 
-        <LinearLayout
-            android:id="@+id/weekDaysLayout"
+
+        <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="12dp">
+            android:layout_marginTop="12dp"
+            android:fillViewport="true"
+            android:scrollbars="none">
 
-            <ToggleButton
-                android:id="@+id/day_monday"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:textOn="Пн"
-                android:textOff="Пн"
-                android:background="@drawable/toggle_day_selector"
-                android:textColor="@color/black"
-                android:layout_margin="4dp"/>
+            <LinearLayout
+                android:id="@+id/weekDaysLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
-            <ToggleButton
-                android:id="@+id/day_tuesday"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:textOn="Вт"
-                android:textOff="Вт"
-                android:background="@drawable/toggle_day_selector"
-                android:textColor="@color/black"
-                android:layout_margin="4dp"/>
-            <ToggleButton
-                android:id="@+id/day_wednesday"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:textOn="Ср"
-                android:textOff="Ср"
-                android:background="@drawable/toggle_day_selector"
-                android:textColor="@color/black"
-                android:layout_margin="4dp"/>
+                <ToggleButton
+                    android:id="@+id/day_monday"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:textOn="Пн"
+                    android:textOff="Пн"
+                    android:background="@drawable/toggle_day_selector"
+                    android:textColor="@color/black"
+                    android:layout_margin="4dp" />
 
-            <ToggleButton
-                android:id="@+id/day_thursday"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:textOn="Чт"
-                android:textOff="Чт"
-                android:background="@drawable/toggle_day_selector"
-                android:textColor="@color/black"
-                android:layout_margin="4dp"/>
-            <ToggleButton
-                android:id="@+id/day_friday"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:textOn="Пт"
-                android:textOff="Пт"
-                android:background="@drawable/toggle_day_selector"
-                android:textColor="@color/black"
-                android:layout_margin="4dp"/>
+                <ToggleButton
+                    android:id="@+id/day_tuesday"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:textOn="Вт"
+                    android:textOff="Вт"
+                    android:background="@drawable/toggle_day_selector"
+                    android:textColor="@color/black"
+                    android:layout_margin="4dp" />
 
-            <ToggleButton
-                android:id="@+id/day_saturday"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:textOn="Сб"
-                android:textOff="Сб"
-                android:background="@drawable/toggle_day_selector"
-                android:textColor="@color/black"
-                android:layout_margin="4dp"/>
-            <ToggleButton
-                android:id="@+id/day_sunday"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:textOn="Вс"
-                android:textOff="Вс"
-                android:background="@drawable/toggle_day_selector"
-                android:textColor="@color/black"
-                android:layout_margin="4dp"/>
+                <ToggleButton
+                    android:id="@+id/day_wednesday"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:textOn="Ср"
+                    android:textOff="Ср"
+                    android:background="@drawable/toggle_day_selector"
+                    android:textColor="@color/black"
+                    android:layout_margin="4dp" />
 
+                <ToggleButton
+                    android:id="@+id/day_thursday"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:textOn="Чт"
+                    android:textOff="Чт"
+                    android:background="@drawable/toggle_day_selector"
+                    android:textColor="@color/black"
+                    android:layout_margin="4dp" />
 
-        </LinearLayout>
+                <ToggleButton
+                    android:id="@+id/day_friday"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:textOn="Пт"
+                    android:textOff="Пт"
+                    android:background="@drawable/toggle_day_selector"
+                    android:textColor="@color/black"
+                    android:layout_margin="4dp" />
+
+                <ToggleButton
+                    android:id="@+id/day_saturday"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:textOn="Сб"
+                    android:textOff="Сб"
+                    android:background="@drawable/toggle_day_selector"
+                    android:textColor="@color/black"
+                    android:layout_margin="4dp" />
+
+                <ToggleButton
+                    android:id="@+id/day_sunday"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:textOn="Вс"
+                    android:textOff="Вс"
+                    android:background="@drawable/toggle_day_selector"
+                    android:textColor="@color/black"
+                    android:layout_margin="4dp" />
+            </LinearLayout>
+        </HorizontalScrollView>
 
         <Button
             android:id="@+id/saveButton"

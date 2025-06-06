@@ -234,8 +234,8 @@
             android:layout_marginTop="16dp" />
 
         <EditText
-            android:id="@+id/daysInput"
-            android:layout_width="385dp"
+            android:id="@+id/targetDaysInput"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:inputType="number"

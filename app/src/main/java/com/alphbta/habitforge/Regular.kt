@@ -14,5 +14,6 @@ data class Regular(
     val freezeCount: Int,
     val repeatType: String,
     val doneCount: Int,
-    val missedCount: Int
+    val missedCount: Int,
+    val lastCompletionDate: String
 )

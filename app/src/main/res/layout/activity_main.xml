@@ -84,8 +84,8 @@
 
                 <ImageView
                     android:id="@+id/toggleTasks"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
                     android:contentDescription="Toggle tasks"
                     android:src="@drawable/ic_expand_more" />
             </LinearLayout>
@@ -134,16 +134,16 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Регулярные дела"
-                    android:textSize="28sp"
-                    android:textStyle="bold"
                     android:textColor="#FFF8F8"
-                    android:layout_weight="1" />
+                    android:textSize="28sp"
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/toggleRegular"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
                     android:src="@drawable/ic_expand_more" />
             </LinearLayout>
 
@@ -198,8 +198,8 @@
 
                 <ImageView
                     android:id="@+id/toggleHabits"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
                     android:src="@drawable/ic_expand_more" />
             </LinearLayout>
 

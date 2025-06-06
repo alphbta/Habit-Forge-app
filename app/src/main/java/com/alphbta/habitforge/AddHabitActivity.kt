@@ -37,9 +37,13 @@ class AddHabitActivity : AppCompatActivity() {
 
         saveButton.setOnClickListener {
             val habitText = habitTitle.text.toString().trim()
+            val targetDaysInput = findViewById<EditText>(R.id.targetDaysInput)
+            val days = targetDaysInput.text.toString().toIntOrNull() ?: 21
+
             if (statHabit.isNullOrEmpty()) {
                 Toast.makeText(this, "Выберите характеристику", Toast.LENGTH_SHORT).show()
             }
+
             if (habitText.isNotEmpty() && !statHabit.isNullOrEmpty()) {
                 val habit = Habit(
                     id = 0,
@@ -51,15 +55,20 @@ class AddHabitActivity : AppCompatActivity() {
                     stat = statHabit!!,
                     tags = null,
                     lastUpdated = "",
-                    0,
-                    0,
-                    0
+                    streak = 0,
+                    doneCount = 0,
+                    missedCount = 0,
+                    targetDays = days,
+                    currentDay = 0,
+                    lastCompletionDate = ""
                 )
+
                 HabitRepository(DbHelper.getInstance(this)).addHabit(habit)
                 setResult(RESULT_OK)
                 finish()
             }
         }
+
 
         val difficultyButtons = listOf(easyButton, normalButton, hardButton)
         val statButtons = listOf(physiqueButton, intelligenceButton, creativityButton, charismaButton)

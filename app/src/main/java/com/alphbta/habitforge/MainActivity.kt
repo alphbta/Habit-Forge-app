@@ -59,19 +59,29 @@ class MainActivity : AppCompatActivity() {
         regularsRecyclerView.adapter = regularAdapter
 
         tasksRecyclerView.addItemDecoration(object : RecyclerView.ItemDecoration() {
-            override fun getItemOffsets(
-                outRect: Rect,
-                view: View,
-                parent: RecyclerView,
-                state: RecyclerView.State
-            ) {
+            override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
                 val position = parent.getChildAdapterPosition(view)
-                if (position == 0) {
-                    outRect.top = 0
-                }
+                if (position == 0) outRect.top = 0
                 outRect.bottom = 32
             }
         })
+        val regularTaskList: RecyclerView = findViewById(R.id.regularList)
+
+        regularTaskList.addItemDecoration(object : RecyclerView.ItemDecoration() {
+            override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+                val position = parent.getChildAdapterPosition(view)
+                if (position == 0) outRect.top = 0
+                outRect.bottom = 32
+            }
+        })
+        habitsRecyclerView.addItemDecoration(object : RecyclerView.ItemDecoration() {
+            override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+                val position = parent.getChildAdapterPosition(view)
+                if (position == 0) outRect.top = 0
+                outRect.bottom = 32
+            }
+        })
+
 
         val addTask: ImageView = findViewById(R.id.addTask)
         val addTaskLauncher = registerForActivityResult(

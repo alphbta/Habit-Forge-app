@@ -18,9 +18,19 @@ class RegularRepository(private val dbHelper: DbHelper) {
             put("freezeCount", regular.freezeCount)
             put("doneCount", regular.doneCount)
             put("missedCount", regular.missedCount)
+            put("lastCompletionDate", regular.lastCompletionDate)
         }
         val db = dbHelper.writableDatabase
         db.insert("regulars", null, values)
+    }
+    fun updateRegularCompletion(regular: Regular) {
+        val db = dbHelper.writableDatabase
+        val values = ContentValues().apply {
+            put("lastCompletionDate", regular.lastCompletionDate)
+            put("doneCount", regular.doneCount)
+        }
+        db.update("regulars", values, "id = ?", arrayOf(regular.id.toString()))
+        db.close()
     }
 
     fun getAllRegulars(): List<Regular> {
@@ -44,6 +54,7 @@ class RegularRepository(private val dbHelper: DbHelper) {
                 val repeatType = cursor.getString(cursor.getColumnIndexOrThrow("repeatType"))
                 val doneCount = cursor.getInt(cursor.getColumnIndexOrThrow("doneCount"))
                 val missedCount = cursor.getInt(cursor.getColumnIndexOrThrow("missedCount"))
+                val lastCompletionDate = cursor.getString(cursor.getColumnIndexOrThrow("lastCompletionDate"))
 
                 val regular = Regular(
                     id,
@@ -59,7 +70,8 @@ class RegularRepository(private val dbHelper: DbHelper) {
                     freezeCount,
                     repeatType,
                     doneCount,
-                    missedCount
+                    missedCount,
+                    lastCompletionDate
                 )
                 regulars.add(regular)
                 cursor.moveToNext()
@@ -78,4 +90,5 @@ class RegularRepository(private val dbHelper: DbHelper) {
         db.close()
         return result != -1
     }
+
 }

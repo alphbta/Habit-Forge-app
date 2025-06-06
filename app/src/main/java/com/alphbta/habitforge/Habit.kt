@@ -12,5 +12,8 @@ data class Habit(
     val lastUpdated: String,
     val streak: Int,
     val doneCount: Int,
-    val missedCount: Int
+    val missedCount: Int,
+    val targetDays: Int,
+    val currentDay: Int,
+    val lastCompletionDate: String
 )

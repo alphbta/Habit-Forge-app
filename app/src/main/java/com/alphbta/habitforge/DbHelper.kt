@@ -43,7 +43,8 @@ class DbHelper private constructor(val context: Context) : SQLiteOpenHelper(cont
                 freezeCount INTEGER DEFAULT 0,
                 repeatType TEXT NOT NULL, 
                 doneCount INTEGER DEFAULT 0, 
-                missedCount INTEGER DEFAULT 0
+                missedCount INTEGER DEFAULT 0,
+                lastCompletionDate TEXT
             )"""
         val habits = """CREATE TABLE habits (
                 id INTEGER PRIMARY KEY AUTOINCREMENT, 
@@ -57,7 +58,10 @@ class DbHelper private constructor(val context: Context) : SQLiteOpenHelper(cont
                 lastUpdated TEXT,
                 streak INTEGER DEFAULT 0, 
                 doneCount INTEGER DEFAULT 0, 
-                missedCount INTEGER DEFAULT 0
+                missedCount INTEGER DEFAULT 0,
+                targetDays INTEGER DEFAULT 21,
+                currentDay INTEGER DEFAULT 0,
+                lastCompletionDate TEXT
             )"""
         db!!.execSQL(tasks)
         db.execSQL(regular)
@@ -66,7 +70,7 @@ class DbHelper private constructor(val context: Context) : SQLiteOpenHelper(cont
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db!!.execSQL("DROP TABLE IF EXISTS tasks")
-        db.execSQL("DROP TABLE IF EXISTS regular")
+        db.execSQL("DROP TABLE IF EXISTS regulars")
         db.execSQL("DROP TABLE IF EXISTS habits")
         onCreate(db)
     }
