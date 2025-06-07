@@ -53,11 +53,11 @@ class HabitAdapter(
 
         if (alreadyCompletedToday) {
             holder.habitTitle.paintFlags = holder.habitTitle.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-            holder.habitTitle.setTextColor(ContextCompat.getColor(context, android.R.color.darker_gray)) // 👈 текст серый
-            holder.habitNote.setTextColor(ContextCompat.getColor(context, android.R.color.darker_gray))   // 👈 и заметка
+            holder.habitTitle.setTextColor(ContextCompat.getColor(context, android.R.color.darker_gray))
+            holder.habitNote.setTextColor(ContextCompat.getColor(context, android.R.color.darker_gray))
+            holder.completeButton.setBackgroundResource(R.drawable.gray_rounded)
+            holder.difficultyStripe.setBackgroundResource(R.drawable.gray_rounded)
 
-            holder.difficultyStripe.setBackgroundColor(ContextCompat.getColor(context, android.R.color.darker_gray)) // 👈 слева серая полоса
-            holder.statCircle.setBackgroundColor(ContextCompat.getColor(context, android.R.color.darker_gray))       // 👈 круг тоже
         } else {
             holder.habitTitle.paintFlags = holder.habitTitle.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
             holder.habitTitle.setTextColor(ContextCompat.getColor(context, android.R.color.white))

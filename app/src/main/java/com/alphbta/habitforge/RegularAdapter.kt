@@ -77,7 +77,10 @@ class RegularAdapter(
             if (alreadyCompleted) {
                 holder.regularTitle.paintFlags = holder.regularTitle.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
                 holder.regularTitle.setTextColor(ContextCompat.getColor(context, android.R.color.darker_gray))
-                holder.difficultyStripe.setBackgroundColor(ContextCompat.getColor(context, android.R.color.darker_gray))
+                holder.completeButton.setBackgroundResource(R.drawable.gray_rounded)
+                holder.difficultyStripe.setBackgroundResource(R.drawable.gray_rounded)
+
+
                 holder.completeButton.isEnabled = false
             } else {
                 holder.regularTitle.paintFlags = 0
