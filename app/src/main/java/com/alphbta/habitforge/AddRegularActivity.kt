@@ -61,8 +61,15 @@ class AddRegularActivity : AppCompatActivity() {
 
             if (statRegular.isNullOrEmpty()) {
                 Toast.makeText(this, "Выберите характеристику", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
-            if (regularText.isNotEmpty() && !statRegular.isNullOrEmpty()) {
+
+            if (selectedDays.isEmpty()) {
+                Toast.makeText(this, "Выберите хотя бы один день недели", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (regularText.isNotEmpty()) {
                 val regular = Regular(
                     id = 0,
                     title = regularText,
@@ -85,6 +92,7 @@ class AddRegularActivity : AppCompatActivity() {
                 finish()
             }
         }
+
 
         val difficultyButtons = listOf(easyButton, normalButton, hardButton)
         val statButtons = listOf(physiqueButton, intelligenceButton, creativityButton, charismaButton)

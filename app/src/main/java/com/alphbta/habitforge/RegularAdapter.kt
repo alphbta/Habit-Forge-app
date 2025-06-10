@@ -25,6 +25,8 @@ class RegularAdapter(
         val completeButton: Button = itemView.findViewById(R.id.complete)
         val difficultyStripe: View = itemView.findViewById(R.id.difficultyStripe)
         val statCircle: View = itemView.findViewById(R.id.statCircle)
+        val regularDays: TextView = itemView.findViewById(R.id.regularDays)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RegularViewHolder {
@@ -39,6 +41,22 @@ class RegularAdapter(
         holder.regularTitle.text = regular.title
         holder.regularNote.text = regular.note ?: ""
         holder.regularNote.visibility = if (regular.note.isNullOrEmpty()) View.GONE else View.VISIBLE
+        val dayMap = mapOf(
+            "mon" to "Пн",
+            "tue" to "Вт",
+            "wed" to "Ср",
+            "thu" to "Чт",
+            "fri" to "Пт",
+            "sat" to "Сб",
+            "sun" to "Вс"
+        )
+
+        val shortDays = regular.repeatType
+            .split(",")
+            .mapNotNull { dayMap[it] }
+            .joinToString(", ")
+
+        holder.regularDays.text = shortDays
 
         when (regular.difficulty) {
             "easy" -> holder.completeButton.setBackgroundColor(ContextCompat.getColor(context, R.color.easy2))

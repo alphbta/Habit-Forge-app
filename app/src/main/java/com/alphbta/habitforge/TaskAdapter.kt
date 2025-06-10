@@ -50,8 +50,23 @@ class TaskAdapter(
         if (!formattedDate.isNullOrEmpty()) {
             holder.taskDeadlineDate.text = formattedDate
             holder.deadlineItem.visibility = View.VISIBLE
-        } else holder.deadlineItem.visibility = View.GONE
 
+            try {
+                val inputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                val deadlineDate = inputFormat.parse(task.deadline!!)
+                val today = java.util.Calendar.getInstance().time
+                if (deadlineDate.before(today)) {
+                    holder.taskDeadlineDate.setTextColor(ContextCompat.getColor(context, android.R.color.holo_red_light))
+                } else {
+                    holder.taskDeadlineDate.setTextColor(ContextCompat.getColor(context, android.R.color.white))
+                }
+            } catch (e: Exception) {
+                holder.taskDeadlineDate.setTextColor(ContextCompat.getColor(context, android.R.color.white))
+            }
+
+        } else {
+            holder.deadlineItem.visibility = View.GONE
+        }
 
         when (task.difficulty) {
             "easy" -> holder.completeButton.setBackgroundColor(ContextCompat.getColor(context, R.color.easy2))
@@ -59,14 +74,12 @@ class TaskAdapter(
             "hard" -> holder.completeButton.setBackgroundColor(ContextCompat.getColor(context, R.color.hard2))
         }
 
-
         val difficultyBackground = when (task.difficulty.lowercase()) {
             "easy" -> R.drawable.complexity_easy
             "normal" -> R.drawable.complexity_normal
             "hard" -> R.drawable.complexity_hard
             else -> R.drawable.easy_default
         }
-
         holder.difficultyStripe.setBackgroundResource(difficultyBackground)
 
         val statBackground = when (task.stat.lowercase()) {
@@ -82,6 +95,7 @@ class TaskAdapter(
             onButtonClick(task)
         }
     }
+
 
     private fun formatDate(dateString: String?): String? {
         if (dateString.isNullOrEmpty()) return null
