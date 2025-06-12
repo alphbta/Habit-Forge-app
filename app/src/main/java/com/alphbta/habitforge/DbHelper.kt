@@ -60,8 +60,7 @@ class DbHelper private constructor(val context: Context) : SQLiteOpenHelper(cont
                 doneCount INTEGER DEFAULT 0, 
                 missedCount INTEGER DEFAULT 0,
                 targetDays INTEGER DEFAULT 21,
-                currentDay INTEGER DEFAULT 0,
-                lastCompletionDate TEXT
+                currentDays INTEGER DEFAULT 0
             )"""
         db!!.execSQL(tasks)
         db.execSQL(regular)

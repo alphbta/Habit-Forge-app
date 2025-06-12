@@ -1,6 +1,10 @@
 package com.alphbta.habitforge
 
 import android.content.ContentValues
+import android.content.Context
+import java.time.LocalDate
+import java.time.temporal.ChronoUnit
+import kotlin.math.min
 
 class HabitRepository(private val dbHelper: DbHelper) {
     fun addHabit(habit: Habit) {
@@ -17,21 +21,10 @@ class HabitRepository(private val dbHelper: DbHelper) {
             put("doneCount", 0)
             put("missedCount", 0)
             put("targetDays", habit.targetDays)
-            put("currentDay", habit.currentDay)
-            put("lastCompletionDate", habit.lastCompletionDate)
-
+            put("currentDays", 0)
         }
         val db = dbHelper.writableDatabase
         db.insert("habits", null, values)
-    }
-    fun updateHabitProgress(habit: Habit) {
-        val db = dbHelper.writableDatabase
-        val values = ContentValues().apply {
-            put("currentDay", habit.currentDay)
-            put("lastCompletionDate", habit.lastCompletionDate)
-        }
-        db.update("habits", values, "id = ?", arrayOf(habit.id.toString()))
-        db.close()
     }
 
     fun getAllHabits(): List<Habit> {
@@ -54,8 +47,7 @@ class HabitRepository(private val dbHelper: DbHelper) {
                 val doneCount = cursor.getInt(cursor.getColumnIndexOrThrow("doneCount"))
                 val missedCount = cursor.getInt(cursor.getColumnIndexOrThrow("missedCount"))
                 val targetDays = cursor.getInt(cursor.getColumnIndexOrThrow("targetDays"))
-                val currentDay = cursor.getInt(cursor.getColumnIndexOrThrow("currentDay"))
-                val lastCompletionDate = cursor.getString(cursor.getColumnIndexOrThrow("lastCompletionDate"))
+                val currentDays = cursor.getInt(cursor.getColumnIndexOrThrow("currentDays"))
 
                 val habit = Habit(
                     id,
@@ -71,8 +63,7 @@ class HabitRepository(private val dbHelper: DbHelper) {
                     doneCount,
                     missedCount,
                     targetDays,
-                    currentDay,
-                    lastCompletionDate
+                    currentDays
                 )
                 habits.add(habit)
                 cursor.moveToNext()
@@ -85,10 +76,43 @@ class HabitRepository(private val dbHelper: DbHelper) {
         return habits
     }
 
-    fun deleteHabit(_id: String): Boolean {
+    fun completeHabit(habit: Habit): Boolean {
         val db = dbHelper.writableDatabase
-        val result = db.delete("habits", "id=?", arrayOf(_id))
+        val values = ContentValues()
+        values.put("isDone", 1)
+        values.put("streak", habit.streak + 1)
+        values.put("currentDays", min(habit.currentDays + 1, habit.targetDays))
+        values.put("doneCount", habit.doneCount + 1)
+        val result = db.update("habits", values, "id=?", arrayOf(habit.id.toString()))
         db.close()
         return result != -1
+    }
+
+    fun checkHabitsForReset(context: Context) {
+        val habits = getAllHabits()
+        val db = dbHelper.writableDatabase
+        val today = LocalDate.now()
+        habits.forEach { habit ->
+            val lastUpdated = LocalDate.parse(habit.lastUpdated)
+            val daysPassed = ChronoUnit.DAYS.between(lastUpdated, today)
+
+            if (daysPassed >= 1) {
+                val values = ContentValues()
+
+                if (!habit.isDone) {
+                    val currentDays = if (habit.currentDays < habit.targetDays) 0 else habit.currentDays
+                    values.put("currentDays", currentDays)
+                    values.put("streak", 0)
+                    values.put("missedCount", habit.missedCount + 1)
+                }
+
+                values.put("isDone", 0)
+                values.put("lastUpdated", today.toString())
+
+                db.update("habits", values, "id=?", arrayOf(habit.id.toString()))
+            }
+        }
+
+        db.close()
     }
 }

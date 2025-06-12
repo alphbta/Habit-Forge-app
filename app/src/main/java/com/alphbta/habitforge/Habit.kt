@@ -14,6 +14,5 @@ data class Habit(
     val doneCount: Int,
     val missedCount: Int,
     val targetDays: Int,
-    val currentDay: Int,
-    val lastCompletionDate: String
+    val currentDays: Int
 )

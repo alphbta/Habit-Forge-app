@@ -1,7 +1,6 @@
 package com.alphbta.habitforge
 
 import android.graphics.Rect
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Bundle
 import android.view.View
@@ -14,7 +13,6 @@ import android.widget.ImageView
 import android.content.Intent
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 class MainActivity : AppCompatActivity() {
@@ -31,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val db = DbHelper.getInstance(this)
+        HabitRepository(db).checkHabitsForReset(this)
         val tasks = TaskRepository(db).getAllTasks()
         val tasksRecyclerView: RecyclerView = findViewById(R.id.taskList)
         val habits = HabitRepository(db).getAllHabits()
@@ -211,11 +210,11 @@ class MainActivity : AppCompatActivity() {
     private fun completeHabit(habit: Habit) {
         val db = DbHelper.getInstance(this)
         val habitRepository = HabitRepository(db)
-        val delete = habitRepository.deleteHabit(habit.id.toString())
-        if (!delete) {
+        val complete = habitRepository.completeHabit(habit)
+        if (!complete) {
             Toast.makeText(
                 this,
-                "Произошла ошибка с удалением",
+                "Произошла ошибка с выполнением",
                 Toast.LENGTH_LONG
             ).show()
         }

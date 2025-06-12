@@ -6,6 +6,7 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import java.time.LocalDate
 
 class AddHabitActivity : AppCompatActivity() {
     private var difficultyHabit: String = "easy"
@@ -54,13 +55,12 @@ class AddHabitActivity : AppCompatActivity() {
                     difficulty = difficultyHabit,
                     stat = statHabit!!,
                     tags = null,
-                    lastUpdated = "",
+                    lastUpdated = LocalDate.now().toString(),
                     streak = 0,
                     doneCount = 0,
                     missedCount = 0,
                     targetDays = days,
-                    currentDay = 0,
-                    lastCompletionDate = ""
+                    currentDays = 0
                 )
 
                 HabitRepository(DbHelper.getInstance(this)).addHabit(habit)

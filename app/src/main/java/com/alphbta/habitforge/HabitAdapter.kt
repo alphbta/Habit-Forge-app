@@ -11,8 +11,6 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import java.text.SimpleDateFormat
-import java.util.*
 
 class HabitAdapter(
     private var habits: List<Habit>,
@@ -38,8 +36,6 @@ class HabitAdapter(
 
     override fun onBindViewHolder(holder: HabitViewHolder, position: Int) {
         val habit = habits[position]
-        val today = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
-        val alreadyCompletedToday = habit.lastCompletionDate == today
 
         holder.habitTitle.text = habit.title
         holder.habitNote.text = habit.note ?: ""
@@ -51,7 +47,7 @@ class HabitAdapter(
             "hard" -> holder.completeButton.setBackgroundColor(ContextCompat.getColor(context, R.color.hard2))
         }
 
-        if (alreadyCompletedToday) {
+        if (habit.isDone) {
             holder.habitTitle.paintFlags = holder.habitTitle.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
             holder.habitTitle.setTextColor(ContextCompat.getColor(context, android.R.color.darker_gray))
             holder.habitNote.setTextColor(ContextCompat.getColor(context, android.R.color.darker_gray))
@@ -72,6 +68,7 @@ class HabitAdapter(
             holder.difficultyStripe.setBackgroundResource(difficultyBackground)
 
         }
+
         val statBackground = when (habit.stat.lowercase()) {
             "physique" -> R.drawable.physique_default
             "intelligence" -> R.drawable.intelligence_default
@@ -79,29 +76,21 @@ class HabitAdapter(
             "charisma" -> R.drawable.charisma_default
             else -> R.drawable.intelligence_default
         }
+
         holder.statCircle.setBackgroundResource(statBackground)
+
         // Прогресс
-        val db = DbHelper.getInstance(context)
-        val repo = HabitRepository(db)
-        val progress = (habit.currentDay * 100) / habit.targetDays
+        val progress = (habit.currentDays * 100) / habit.targetDays
         holder.progressBar.progress = progress
         holder.progressBar.max = 100
-        holder.progressText.text = "${habit.currentDay} / ${habit.targetDays}"
+        holder.progressText.text = "${habit.streak} / ${habit.targetDays}"
 
         // Блокировка кнопки
-        holder.completeButton.isEnabled = !alreadyCompletedToday
+        holder.completeButton.isEnabled = !habit.isDone
 
         // Логика нажатия
         holder.completeButton.setOnClickListener {
-            if (!alreadyCompletedToday && habit.currentDay < habit.targetDays) {
-                val updatedHabit = habit.copy(
-                    currentDay = habit.currentDay + 1,
-                    lastCompletionDate = today
-                )
-                repo.updateHabitProgress(updatedHabit)
-                habits = habits.toMutableList().also { it[position] = updatedHabit }
-                notifyItemChanged(position)
-            }
+            onButtonClick(habit)
         }
     }
 
