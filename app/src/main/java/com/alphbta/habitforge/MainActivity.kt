@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.widget.ImageView
 import android.content.Intent
+import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 
@@ -23,10 +24,24 @@ class MainActivity : AppCompatActivity() {
     private lateinit var taskAdapter: TaskAdapter
     private lateinit var habitAdapter: HabitAdapter
     private lateinit var regularAdapter: RegularAdapter
+    private lateinit var menuOverlay: FrameLayout
+    private lateinit var menuLayout: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val menuIcon = findViewById<ImageView>(R.id.menu)
+        menuOverlay = findViewById(R.id.menuOverlay)
+        menuLayout = findViewById(R.id.navigationMenu)
+
+        menuIcon.setOnClickListener {
+            openMenu()
+        }
+
+        menuOverlay.setOnClickListener {
+            closeMenu()
+        }
 
         val db = DbHelper.getInstance(this)
         HabitRepository(db).checkHabitsForReset(this)
@@ -177,19 +192,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // physique = findViewById(R.id.physique)
-        // intelligenceText = findViewById(R.id.intelligence)
-        // creativityText = findViewById(R.id.creativity)
-        // charismaText = findViewById(R.id.charisma)
-        // updateAllTexts()
-    }
-
-    private fun updateAllTexts() {
-        val stats = StatsManager.getAllStats(this)
-        physique.text = "Телосложение: ${stats["physique"]}"
-        intelligenceText.text = "Интеллект: ${stats["intelligence"]}"
-        creativityText.text = "Творчество: ${stats["creativity"]}"
-        charismaText.text = "Харизма: ${stats["charisma"]}"
+        val menuAccount = findViewById<TextView>(R.id.menuAccount)
+        menuAccount.setOnClickListener {
+            val intent = Intent(this, AccountActivity::class.java)
+            startActivity(intent)
+            menuOverlay.visibility = View.GONE
+        }
     }
 
     private fun completeTask(task: Task) {
@@ -210,7 +218,7 @@ class MainActivity : AppCompatActivity() {
     private fun completeHabit(habit: Habit) {
         val db = DbHelper.getInstance(this)
         val habitRepository = HabitRepository(db)
-        val complete = habitRepository.completeHabit(habit)
+        val complete = habitRepository.completeHabit(this, habit)
         if (!complete) {
             Toast.makeText(
                 this,
@@ -257,5 +265,13 @@ class MainActivity : AppCompatActivity() {
                 this.visibility = View.GONE
             }
             .start()
+    }
+
+    private fun openMenu() {
+        menuOverlay.visibility = View.VISIBLE
+    }
+
+    private fun closeMenu() {
+        menuOverlay.visibility = View.GONE
     }
 }

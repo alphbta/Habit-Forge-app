@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#A4A8A6"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:clickable="true">
 
     <TextView
         android:id="@+id/menuTasks"

@@ -76,7 +76,7 @@ class HabitRepository(private val dbHelper: DbHelper) {
         return habits
     }
 
-    fun completeHabit(habit: Habit): Boolean {
+    fun completeHabit(context: Context, habit: Habit): Boolean {
         val db = dbHelper.writableDatabase
         val values = ContentValues()
         values.put("isDone", 1)
@@ -85,6 +85,9 @@ class HabitRepository(private val dbHelper: DbHelper) {
         values.put("doneCount", habit.doneCount + 1)
         val result = db.update("habits", values, "id=?", arrayOf(habit.id.toString()))
         db.close()
+
+        StatsManager.addExperienceToStat(context, habit.stat, habit.difficulty)
+
         return result != -1
     }
 

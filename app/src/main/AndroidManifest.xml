@@ -13,20 +13,24 @@
         android:theme="@style/Theme.HabitForge"
         tools:targetApi="31">
         <activity
+            android:name=".AccountActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+        <activity
             android:name=".AddHabitActivity"
             android:exported="false"
             android:label="Привычка"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".AddTaskActivity"
             android:exported="false"
             android:label="Задача"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".AddRegularActivity"
             android:exported="false"
             android:label="Регулярные дела"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
