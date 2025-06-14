@@ -16,117 +16,210 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/icon_menu" />
 
-    <TextView
-        android:id="@+id/physiqueTitle"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id = "@+id/forfor"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="12dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center_vertical"
         android:layout_marginTop="24dp"
-        android:text="Телосложение"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <TextView
-        android:id="@+id/physiqueLevel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/physiqueTitle"
-        app:layout_constraintEnd_toStartOf="@+id/physiqueXp"/>
 
-    <TextView
-        android:id="@+id/physiqueXp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/physiqueTitle"
-        app:layout_constraintStart_toEndOf="@+id/physiqueLevel"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp"
+            android:gravity="center_vertical">
 
-    <TextView
-        android:id="@+id/intelligenceTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Интеллект"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/physiqueLevel" />
+            <TextView
+                android:id="@+id/physiqueLevel"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:background="@drawable/button_physique"
+                android:text="7"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/intelligenceLevel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/intelligenceTitle"
-        app:layout_constraintEnd_toStartOf="@+id/intelligenceXp"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="-10dp"
+                android:layout_marginEnd="8dp">
 
-    <TextView
-        android:id="@+id/intelligenceXp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/intelligenceTitle"
-        app:layout_constraintStart_toEndOf="@+id/intelligenceLevel"/>
+                <TextView
+                    android:id="@+id/physiqueXp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="80/200"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:background="@color/physique"
+                    android:padding="4dp" />
+            </LinearLayout>
 
-    <TextView
-        android:id="@+id/creativityTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Творчество"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/intelligenceLevel" />
+            <ImageView
+                android:id="@+id/help_physique"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/baseline_contact_support_24"
+                app:tint="#CCCCCC" />
 
-    <TextView
-        android:id="@+id/creativityLevel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/creativityTitle"
-        app:layout_constraintEnd_toStartOf="@+id/creativityXp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp"
+            android:gravity="center_vertical">
 
-    <TextView
-        android:id="@+id/creativityXp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/creativityTitle"
-        app:layout_constraintStart_toEndOf="@+id/creativityLevel"/>
+            <TextView
+                android:id="@+id/intelligenceLevel"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:background="@drawable/button_intelligence"
+                android:text="7"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/charismaTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Харизма"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/creativityLevel" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="-10dp"
+                android:layout_marginEnd="8dp">
 
-    <TextView
-        android:id="@+id/charismaLevel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/charismaTitle"
-        app:layout_constraintEnd_toStartOf="@+id/charismaXp"/>
+                <TextView
+                    android:id="@+id/intelligenceXp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="80/200"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:background="@color/intelligence"
+                    android:padding="4dp" />
+            </LinearLayout>
 
-    <TextView
-        android:id="@+id/charismaXp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/charismaTitle"
-        app:layout_constraintStart_toEndOf="@+id/charismaLevel"/>
+            <ImageView
+                android:id="@+id/help_intelligence"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/baseline_contact_support_24"
+                app:tint="#CCCCCC" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/creativityLevel"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:background="@drawable/button_creativity"
+                android:text="7"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="-10dp"
+                android:layout_marginEnd="8dp">
+
+                <TextView
+                    android:id="@+id/creativityXp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="80/200"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:background="@color/creativity"
+                    android:padding="4dp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/help_creativity"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/baseline_contact_support_24"
+                app:tint="#CCCCCC" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/charismaLevel"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:background="@drawable/button_charisma"
+                android:text="7"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="-10dp"
+                android:layout_marginEnd="8dp">
+
+                <TextView
+                    android:id="@+id/charismaXp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="80/200"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:background="@color/charisma"
+                    android:padding="4dp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/help_charisma"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/baseline_contact_support_24"
+                app:tint="#CCCCCC" />
+
+        </LinearLayout>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/coins"
@@ -134,9 +227,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Монеты: "
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/forfor"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/charismaLevel" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/userLevel"

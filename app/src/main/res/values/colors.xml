@@ -6,7 +6,7 @@
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-<!--    <color name="background_dark">#2D2D2D</color>-->
+    <!--    <color name="background_dark">#2D2D2D</color>-->
     <color name="background_dark">#2C2C2E</color>
 
     <color name="easy">#488B2F</color>
@@ -17,9 +17,9 @@
     <color name="hard2">#EF7D7D</color>
 
     <color name="physique">#FFFFFF</color>
-    <color name="intelligence">#0000FF</color>
-    <color name="creativity">#800080</color>
-    <color name="charisma">#9C27B0</color>
+    <color name="intelligence">#260CEF</color>
+    <color name="creativity">#6D0881</color>
+    <color name="charisma">#9455F4</color>
 
     <color name="text_light">#FFFFFF</color>
 </resources>
