@@ -18,9 +18,9 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <FrameLayout
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="13dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="8dp"
         android:background="@android:color/transparent"
         app:layout_constraintStart_toStartOf="@id/difficultyStripe"
         app:layout_constraintTop_toTopOf="parent"
@@ -86,8 +86,8 @@
             android:layout_weight="1" />
 
         <FrameLayout
-            android:layout_width="24dp"
-            android:layout_height="24dp">
+            android:layout_width="32dp"
+            android:layout_height="32dp">
 
             <View
                 android:id="@+id/statCircle"
