@@ -48,7 +48,7 @@
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/difficultyStripe"
-/>
+        />
 
 
     <TextView
@@ -96,8 +96,8 @@
 
         <View
             android:id="@+id/statCircle"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:background="@drawable/intelligence_default" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
