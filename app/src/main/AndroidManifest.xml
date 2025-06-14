@@ -15,7 +15,8 @@
         <activity
             android:name=".AccountActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.HabitForge.NoActionBar"/>
         <activity
             android:name=".AddHabitActivity"
             android:exported="false"

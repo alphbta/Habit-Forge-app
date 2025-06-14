@@ -17,10 +17,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var physique: TextView
-    private lateinit var intelligenceText: TextView
-    private lateinit var creativityText: TextView
-    private lateinit var charismaText: TextView
     private lateinit var taskAdapter: TaskAdapter
     private lateinit var habitAdapter: HabitAdapter
     private lateinit var regularAdapter: RegularAdapter
@@ -34,6 +30,9 @@ class MainActivity : AppCompatActivity() {
         val menuIcon = findViewById<ImageView>(R.id.menu)
         menuOverlay = findViewById(R.id.menuOverlay)
         menuLayout = findViewById(R.id.navigationMenu)
+
+        val userLevel = findViewById<TextView>(R.id.userLevel)
+        userLevel.text = "${StatsManager.getAllStats(this)["user"].toString()} ур."
 
         menuIcon.setOnClickListener {
             openMenu()
