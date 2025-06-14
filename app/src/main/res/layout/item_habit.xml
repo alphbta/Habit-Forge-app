@@ -19,7 +19,7 @@
     <FrameLayout
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="9dp"
         android:background="@android:color/transparent"
         app:layout_constraintStart_toStartOf="@id/difficultyStripe"
         app:layout_constraintTop_toTopOf="parent"
