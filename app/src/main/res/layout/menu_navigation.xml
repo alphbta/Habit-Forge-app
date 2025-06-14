@@ -4,9 +4,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#A4A8A6"
-    android:padding="16dp"
     android:clickable="true">
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#1E5945"
+        android:padding="8dp"
+        android:layout_marginBottom="16dp">
+        <ImageView
+            android:id="@+id/menu"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_menu" />
+    </LinearLayout>
     <TextView
         android:id="@+id/menuTasks"
         android:layout_width="match_parent"
@@ -16,32 +28,32 @@
         android:textSize="18sp"
         android:padding="12dp"/>
 
-    <TextView
-        android:id="@+id/menuShop"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Магазин"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        android:padding="12dp"/>
+<!--    <TextView-->
+<!--        android:id="@+id/menuShop"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Магазин"-->
+<!--        android:textColor="#FFFFFF"-->
+<!--        android:textSize="18sp"-->
+<!--        android:padding="12dp"/>-->
 
-    <TextView
-        android:id="@+id/menuInventory"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Инвентарь"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        android:padding="12dp"/>
+<!--    <TextView-->
+<!--        android:id="@+id/menuInventory"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Инвентарь"-->
+<!--        android:textColor="#FFFFFF"-->
+<!--        android:textSize="18sp"-->
+<!--        android:padding="12dp"/>-->
 
-    <TextView
-        android:id="@+id/menuQuests"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Квесты"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        android:padding="12dp"/>
+<!--    <TextView-->
+<!--        android:id="@+id/menuQuests"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Квесты"-->
+<!--        android:textColor="#FFFFFF"-->
+<!--        android:textSize="18sp"-->
+<!--        android:padding="12dp"/>-->
 
     <TextView
         android:id="@+id/menuAccount"
@@ -52,12 +64,12 @@
         android:textSize="18sp"
         android:padding="12dp"/>
 
-    <TextView
-        android:id="@+id/menuHelp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Помощь"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        android:padding="12dp"/>
+<!--    <TextView-->
+<!--        android:id="@+id/menuHelp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Помощь"-->
+<!--        android:textColor="#FFFFFF"-->
+<!--        android:textSize="18sp"-->
+<!--        android:padding="12dp"/>-->
 </LinearLayout>
