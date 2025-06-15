@@ -63,7 +63,6 @@
         app:layout_constraintEnd_toEndOf="@id/taskTitle" />
 
     <LinearLayout
-        android:id="@+id/deadlineItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -73,21 +72,28 @@
         app:layout_constraintStart_toStartOf="@id/taskTitle"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <ImageView
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:src="@drawable/ic_calendar"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="8dp" />
+        <LinearLayout
+            android:id="@+id/deadlineItem"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/deadlineDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:text="33 мая 2030 г."
-            android:textColor="@android:color/white"
-            android:textSize="14sp" />
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/ic_calendar" />
+
+            <TextView
+                android:id="@+id/deadlineDate"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="33 мая 2030 г."
+                android:layout_gravity="center_vertical"
+                android:textColor="@android:color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+
 
         <View
             android:layout_width="0dp"

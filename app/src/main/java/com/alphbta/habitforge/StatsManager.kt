@@ -79,4 +79,11 @@ object StatsManager {
         val currentCoins = stats["coins"]!! + coins
         setStat(context, "coins", currentCoins)
     }
+
+    fun getRequiredXpStat(context: Context, stat: String) : Int {
+        val stats = getAllStats(context)
+        val currentLevel = stats[stat]!!
+        val requiredXp = 50 + (currentLevel - 1) * 25
+        return requiredXp
+    }
 }

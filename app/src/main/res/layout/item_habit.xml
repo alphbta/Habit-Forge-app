@@ -73,9 +73,9 @@
         <ProgressBar
             android:id="@+id/habitProgressBar"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="280dp"
+            android:layout_width="260dp"
             android:layout_height="10dp"
-            android:layout_marginTop="6dp"
+            android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:max="100"
             android:progress="0"
@@ -86,7 +86,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="7 / 21"
-            android:layout_marginTop="4dp"
+            android:layout_gravity="center_vertical"
             android:textColor="@android:color/white"
             android:textSize="12sp"
             android:layout_marginStart="8dp" />
@@ -94,21 +94,10 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1" />
-        <FrameLayout
+        <View
+            android:id="@+id/statCircle"
             android:layout_width="32dp"
-            android:layout_height="32dp">
-
-            <View
-                android:id="@+id/statCircle"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/intelligence_default" />
-
-<!--            <ImageView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:src="@drawable/ic_menu"-->
-<!--                android:scaleType="centerInside" />-->
-        </FrameLayout>
+            android:layout_height="32dp"
+            android:background="@drawable/intelligence_default" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

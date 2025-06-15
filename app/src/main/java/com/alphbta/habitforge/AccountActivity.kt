@@ -45,10 +45,10 @@ class AccountActivity : AppCompatActivity() {
         intelligenceLevel.text = stats["intelligence"].toString()
         creativityLevel.text = stats["creativity"].toString()
         charismaLevel.text = stats["charisma"].toString()
-        physiqueXp.text = stats["physiqueXp"].toString()
-        intelligenceXp.text = stats["intelligenceXp"].toString()
-        creativityXp.text = stats["creativityXp"].toString()
-        charismaXp.text = stats["charismaXp"].toString()
+        physiqueXp.text = "${stats["physiqueXp"]}/${StatsManager.getRequiredXpStat(this, "physique")}"
+        intelligenceXp.text = "${stats["intelligenceXp"]}/${StatsManager.getRequiredXpStat(this, "intelligence")}"
+        creativityXp.text = "${stats["creativityXp"]}/${StatsManager.getRequiredXpStat(this, "creativity")}"
+        charismaXp.text = "${stats["charismaXp"]}/${StatsManager.getRequiredXpStat(this, "charisma")}"
         userLevel.text = "Уровень: ${stats["user"]}"
         userXp.text = "Опыт: ${stats["userXp"]}"
         coins.text = "Монеты: ${stats["coins"]}"
