@@ -1,6 +1,8 @@
 package com.alphbta.habitforge
 
 import android.content.ContentValues
+import android.content.Context
+import kotlin.math.min
 
 class RegularRepository(private val dbHelper: DbHelper) {
     fun addRegular(regular: Regular) {
@@ -84,9 +86,13 @@ class RegularRepository(private val dbHelper: DbHelper) {
         return regulars
     }
 
-    fun deleteRegular(_id: String): Boolean {
+    fun completeRegular(context: Context, regular: Regular) {
+        StatsManager.addExperienceToStat(context, regular.stat, regular.difficulty)
+    }
+
+    fun deleteRegular(regular: Regular): Boolean {
         val db = dbHelper.writableDatabase
-        val result = db.delete("regulars", "id=?", arrayOf(_id))
+        val result = db.delete("regulars", "id=?", arrayOf(regular.id.toString()))
         db.close()
         return result != -1
     }

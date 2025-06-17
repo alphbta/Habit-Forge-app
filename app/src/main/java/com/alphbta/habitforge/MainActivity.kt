@@ -197,12 +197,27 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             menuOverlay.visibility = View.GONE
         }
+
+        val menuShop = findViewById<TextView>(R.id.menuShop)
+        menuShop.setOnClickListener {
+            val intent = Intent(this, ShopActivity::class.java)
+            startActivity(intent)
+            menuOverlay.visibility = View.GONE
+        }
+
+        val menuTasks = findViewById<TextView>(R.id.menuTasks)
+        menuTasks.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            menuOverlay.visibility = View.GONE
+        }
     }
 
     private fun completeTask(task: Task) {
         val db = DbHelper.getInstance(this)
         val taskRepository = TaskRepository(db)
-        val delete = taskRepository.deleteTask(task.id.toString())
+        taskRepository.comleteTask(this, task)
+        val delete = taskRepository.deleteTask(task)
         if (!delete) {
             Toast.makeText(
                 this,
@@ -232,16 +247,7 @@ class MainActivity : AppCompatActivity() {
     private fun completeRegular(regular: Regular) {
         val db = DbHelper.getInstance(this)
         val regularRepository = RegularRepository(db)
-        val delete = regularRepository.deleteRegular(regular.id.toString())
-        if (!delete) {
-            Toast.makeText(
-                this,
-                "Произошла ошибка с удалением",
-                Toast.LENGTH_LONG
-            ).show()
-        }
-
-        regularAdapter.updateRegulars(regularRepository.getAllRegulars())
+        regularRepository.completeRegular(this, regular)
     }
 
     private fun View.expand(duration: Long = 200) {

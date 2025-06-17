@@ -28,14 +28,14 @@
         android:textSize="18sp"
         android:padding="12dp"/>
 
-<!--    <TextView-->
-<!--        android:id="@+id/menuShop"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Магазин"-->
-<!--        android:textColor="#FFFFFF"-->
-<!--        android:textSize="18sp"-->
-<!--        android:padding="12dp"/>-->
+    <TextView
+        android:id="@+id/menuShop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Магазин"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:padding="12dp"/>
 
 <!--    <TextView-->
 <!--        android:id="@+id/menuInventory"-->

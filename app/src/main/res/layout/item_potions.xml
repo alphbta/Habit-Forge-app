@@ -2,11 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/buyPotion"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/bg_gradient_orange_item"
-    android:padding="0dp"
-    android:minHeight="90dp">
+    android:padding="8dp"
+    android:minHeight="90dp"
+    android:clickable="true">
 
 
     <TextView
@@ -21,34 +23,38 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
     <ImageView
         android:id="@+id/imagePotions"
-        android:layout_width="wrap_content"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/itemTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/long_sword" />
+        app:srcCompat="@drawable/potion_hp"
+        android:layout_marginTop="8dp"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="24dp"
         app:layout_constraintTop_toBottomOf="@id/imagePotions"
         app:layout_constraintStart_toStartOf="@id/imagePotions"
-        app:layout_constraintEnd_toEndOf="@id/imagePotions">
+        app:layout_constraintEnd_toEndOf="@id/imagePotions"
+        android:layout_marginTop="8dp">
         <TextView
             android:id="@+id/potionsMoney"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="стоимость"
-            android:textSize="14sp" />
+            android:textSize="18sp"
+            android:textStyle="bold"/>
         <ImageView
             android:layout_width="24dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/Money" />
+            android:src="@drawable/money" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,11 @@
 package com.alphbta.habitforge
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.FrameLayout
+import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +24,11 @@ class AccountActivity : AppCompatActivity() {
     private lateinit var userLevel: TextView
     private lateinit var userXp: TextView
     private lateinit var coins: TextView
+    private lateinit var freezeCount: TextView
+    private lateinit var menuOverlay: FrameLayout
+    private lateinit var menuLayout: View
+    private lateinit var xp: TextView
+    private lateinit var hp: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,8 +45,52 @@ class AccountActivity : AppCompatActivity() {
         userLevel = findViewById(R.id.userLevel)
         userXp = findViewById(R.id.userXp)
         coins = findViewById(R.id.coins)
+        freezeCount = findViewById(R.id.freezeCount)
+        xp = findViewById(R.id.xp)
+        hp = findViewById(R.id.hp)
 
         updateAllTexts()
+
+        val menuIcon = findViewById<ImageView>(R.id.menu)
+        menuOverlay = findViewById(R.id.menuOverlay)
+        menuLayout = findViewById(R.id.navigationMenu)
+
+        menuIcon.setOnClickListener {
+            openMenu()
+        }
+
+        menuOverlay.setOnClickListener {
+            closeMenu()
+        }
+
+        val menuAccount = findViewById<TextView>(R.id.menuAccount)
+        menuAccount.setOnClickListener {
+            val intent = Intent(this, AccountActivity::class.java)
+            startActivity(intent)
+            menuOverlay.visibility = View.GONE
+        }
+
+        val menuTasks = findViewById<TextView>(R.id.menuTasks)
+        menuTasks.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            menuOverlay.visibility = View.GONE
+        }
+
+        val menuShop = findViewById<TextView>(R.id.menuShop)
+        menuShop.setOnClickListener {
+            val intent = Intent(this, ShopActivity::class.java)
+            startActivity(intent)
+            menuOverlay.visibility = View.GONE
+        }
+
+        val stats = StatsManager.getAllStats(this)
+        val userXpBar = findViewById<ProgressBar>(R.id.userXpBar)
+        val xpValue = (stats["userXp"]!! * 100) / StatsManager.getRequiredUserXpStat(this)
+        userXpBar.progress = xpValue
+        val hpBar = findViewById<ProgressBar>(R.id.hpBar)
+        val hpValue = (stats["hp"]!! * 100) / StatsManager.getMaxHp(this)
+        hpBar.progress = hpValue
     }
 
     private fun updateAllTexts() {
@@ -52,5 +106,16 @@ class AccountActivity : AppCompatActivity() {
         userLevel.text = "Уровень: ${stats["user"]}"
         userXp.text = "Опыт: ${stats["userXp"]}"
         coins.text = "Монеты: ${stats["coins"]}"
+        freezeCount.text = "Заморозки: ${stats["freeze"]}"
+        xp.text = "${stats["userXp"]}/${StatsManager.getRequiredUserXpStat(this)}"
+        hp.text = "${stats["hp"]}/${StatsManager.getMaxHp(this)}"
+    }
+
+    private fun openMenu() {
+        menuOverlay.visibility = View.VISIBLE
+    }
+
+    private fun closeMenu() {
+        menuOverlay.visibility = View.GONE
     }
 }

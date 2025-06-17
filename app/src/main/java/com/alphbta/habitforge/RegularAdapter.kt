@@ -112,6 +112,7 @@ class RegularAdapter(
 
         holder.completeButton.setOnClickListener {
             if (isTodayScheduled && !alreadyCompleted) {
+                onButtonClick(regular)
                 val updatedRegular = regular.copy(
                     doneCount = regular.doneCount + 1,
                     lastCompletionDate = todayDate

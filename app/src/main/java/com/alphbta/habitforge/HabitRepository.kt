@@ -95,6 +95,8 @@ class HabitRepository(private val dbHelper: DbHelper) {
         val habits = getAllHabits()
         val db = dbHelper.writableDatabase
         val today = LocalDate.now()
+        val freeze = StatsManager.getFreezeCount(context)
+        var isFreezeUsed = false
         habits.forEach { habit ->
             val lastUpdated = LocalDate.parse(habit.lastUpdated)
             val daysPassed = ChronoUnit.DAYS.between(lastUpdated, today)
@@ -102,7 +104,11 @@ class HabitRepository(private val dbHelper: DbHelper) {
             if (daysPassed >= 1) {
                 val values = ContentValues()
 
-                if (!habit.isDone) {
+                if (!habit.isDone && freeze > 0) {
+                    isFreezeUsed = true
+                }
+                else if (!habit.isDone) {
+                    StatsManager.addHp(context, -5)
                     val currentDays = if (habit.currentDays < habit.targetDays) 0 else habit.currentDays
                     values.put("currentDays", currentDays)
                     values.put("streak", 0)
@@ -114,6 +120,10 @@ class HabitRepository(private val dbHelper: DbHelper) {
 
                 db.update("habits", values, "id=?", arrayOf(habit.id.toString()))
             }
+        }
+
+        if (isFreezeUsed) {
+            StatsManager.addFreeze(context, -1)
         }
 
         db.close()

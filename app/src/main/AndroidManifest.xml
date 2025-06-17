@@ -13,10 +13,15 @@
         android:theme="@style/Theme.HabitForge"
         tools:targetApi="31">
         <activity
+            android:name=".ShopActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.HabitForge.NoActionBar" />
+        <activity
             android:name=".AccountActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/Theme.HabitForge.NoActionBar"/>
+            android:theme="@style/Theme.HabitForge.NoActionBar" />
         <activity
             android:name=".AddHabitActivity"
             android:exported="false"

@@ -1,6 +1,7 @@
 package com.alphbta.habitforge
 
 import android.content.ContentValues
+import android.content.Context
 
 class TaskRepository(private val dbHelper: DbHelper) {
     fun addTask(task: Task) {
@@ -66,9 +67,13 @@ class TaskRepository(private val dbHelper: DbHelper) {
         return tasks
     }
 
-    fun deleteTask(_id: String): Boolean {
+    fun comleteTask(context: Context, task: Task) {
+        StatsManager.addExperienceToStat(context, task.stat, task.difficulty)
+    }
+
+    fun deleteTask(task: Task): Boolean {
         val db = dbHelper.writableDatabase
-        val result = db.delete("tasks", "id=?", arrayOf(_id))
+        val result = db.delete("tasks", "id=?", arrayOf(task.id.toString()))
         db.close()
         return result != -1
     }
