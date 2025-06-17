@@ -27,7 +27,7 @@ class PotionAdapter(private val potions : List<Potion>, private val context: Con
 
     override fun onBindViewHolder(holder: PotionViewHolder, position: Int) {
         val potion = potions[position]
-        holder.itemTitle.text = potion.getName()
+        holder.itemTitle.text = potion.getName().split(" ").joinToString("\n")
         holder.potionsMoney.text = potion.getCost().toString()
         val imageId = context.resources.getIdentifier(potion.getFileName(), "drawable", context.packageName)
         if (imageId != 0) {
