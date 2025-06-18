@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -80,6 +81,14 @@ class ShopActivity : AppCompatActivity(), OnItemBoughtListener {
             startActivity(intent)
             menuOverlay.visibility = View.GONE
         }
+
+        val stats = StatsManager.getAllStats(this)
+        val userXpBar = findViewById<ProgressBar>(R.id.userXpBar)
+        val xpValue = (stats["userXp"]!! * 100) / StatsManager.getRequiredUserXpStat(this)
+        userXpBar.progress = xpValue
+        val hpBar = findViewById<ProgressBar>(R.id.hpBar)
+        val hpValue = (stats["hp"]!! * 100) / StatsManager.getMaxHp(this)
+        hpBar.progress = hpValue
     }
 
     override fun onItemBought() {

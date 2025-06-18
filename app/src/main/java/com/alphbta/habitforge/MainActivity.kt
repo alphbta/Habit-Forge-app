@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import android.widget.ImageView
 import android.content.Intent
 import android.widget.FrameLayout
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 
@@ -211,6 +212,13 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             menuOverlay.visibility = View.GONE
         }
+        val stats = StatsManager.getAllStats(this)
+        val userXpBar = findViewById<ProgressBar>(R.id.userXpBar)
+        val xpValue = (stats["userXp"]!! * 100) / StatsManager.getRequiredUserXpStat(this)
+        userXpBar.progress = xpValue
+        val hpBar = findViewById<ProgressBar>(R.id.hpBar)
+        val hpValue = (stats["hp"]!! * 100) / StatsManager.getMaxHp(this)
+        hpBar.progress = hpValue
     }
 
     private fun completeTask(task: Task) {
