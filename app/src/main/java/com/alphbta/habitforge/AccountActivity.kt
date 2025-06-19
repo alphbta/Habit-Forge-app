@@ -103,7 +103,7 @@ class AccountActivity : AppCompatActivity() {
         intelligenceXp.text = "${stats["intelligenceXp"]}/${StatsManager.getRequiredXpStat(this, "intelligence")}"
         creativityXp.text = "${stats["creativityXp"]}/${StatsManager.getRequiredXpStat(this, "creativity")}"
         charismaXp.text = "${stats["charismaXp"]}/${StatsManager.getRequiredXpStat(this, "charisma")}"
-        userLevel.text = "Уровень: ${stats["user"]}"
+        userLevel.text = "${stats["user"]}"
         userXp.text = "Опыт: ${stats["userXp"]}"
         coins.text = "Монеты: ${stats["coins"]}"
         freezeCount.text = "Заморозки: ${stats["freeze"]}"

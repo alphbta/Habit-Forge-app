@@ -70,10 +70,10 @@ class HabitAdapter(
         }
 
         val statBackground = when (habit.stat.lowercase()) {
-            "physique" -> R.drawable.physique_with_icon
-            "intelligence" -> R.drawable.intellegence_with_icon
-            "creativity" -> R.drawable.creativity_with_icon
-            "charisma" -> R.drawable.charisma_with_icon
+            "physique" -> R.drawable.physique_default
+            "intelligence" -> R.drawable.intelligence_default
+            "creativity" -> R.drawable.creativity_default
+            "charisma" -> R.drawable.charisma_default
             else -> R.drawable.intelligence_default
         }
 

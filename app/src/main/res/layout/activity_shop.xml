@@ -39,18 +39,19 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp">
 
-                    <TextView
-                        android:id="@+id/userLevel"
-                        android:text="999 ур."
-                        android:textSize="14sp"
-                        android:textColor="#FFFFFF"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:layout_marginTop="6dp">
+                        <TextView
+                            android:id="@+id/userLevel"
+                            android:text="9"
+                            android:gravity="center_horizontal"
+                            android:textSize="16sp"
+                            android:textColor="#FFFFFF"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp" />
                         <ProgressBar
                             android:id="@+id/userXpBar"
                             style="?android:attr/progressBarStyleHorizontal"
@@ -60,7 +61,7 @@
                             android:layout_weight="1"
                             android:max="100"
                             android:progress="0"
-                            android:progressDrawable="@drawable/progress_habit" />
+                            android:progressDrawable="@drawable/progress_xp" />
                         <TextView
                             android:id="@+id/xp"
                             android:layout_width="wrap_content"
@@ -74,6 +75,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/serdce" />
                         <ProgressBar
                             android:id="@+id/hpBar"
                             style="?android:attr/progressBarStyleHorizontal"
@@ -102,7 +109,7 @@
                     android:id="@+id/coins"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="mmmm"
+                    android:text="23"
                     android:textSize="28sp"
                     android:textStyle="bold"
                     android:layout_marginRight="4dp"
@@ -126,7 +133,7 @@
                 android:background="@drawable/bg_rounded_box_tasks"
                 android:orientation="vertical"
                 android:layout_marginBottom="10dp"
-                android:visibility="gone"> <!-->TODO<-->
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -51,7 +51,7 @@ class ShopActivity : AppCompatActivity(), OnItemBoughtListener {
         menuLayout = findViewById(R.id.navigationMenu)
 
         val userLevel = findViewById<TextView>(R.id.userLevel)
-        userLevel.text = "${StatsManager.getAllStats(this)["user"].toString()} ур."
+        userLevel.text = "${StatsManager.getAllStats(this)["user"].toString()}"
 
         menuIcon.setOnClickListener {
             openMenu()

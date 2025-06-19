@@ -79,7 +79,7 @@
             android:layout_weight="1"
             android:max="100"
             android:progress="0"
-            android:progressDrawable="@drawable/progress_habit" />
+            android:progressDrawable="@drawable/progress_xp" />
 
         <TextView
             android:id="@+id/progressText"
