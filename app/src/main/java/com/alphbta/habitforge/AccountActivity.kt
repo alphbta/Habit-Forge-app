@@ -120,6 +120,16 @@ class AccountActivity : AppCompatActivity() {
             val dialog = CustomDialogFragment("charisma")
             dialog.show(supportFragmentManager, "customDialog")
         }
+
+        val helpPotions = findViewById<ImageView>(R.id.imagePotions)
+        helpPotions.setOnClickListener{
+            val dialog = CustomPotionFragment("freeze")
+            dialog.show(supportFragmentManager, "customPotion")
+        }
+        helpPotions.setOnClickListener{
+            val dialog = CustomPotionFragment("hp")
+            dialog.show(supportFragmentManager, "customPotion")
+        }
     }
 
     private fun updateAllTexts() {

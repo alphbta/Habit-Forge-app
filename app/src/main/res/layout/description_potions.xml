@@ -33,7 +33,7 @@
             android:layout_marginTop="4dp">
 
             <View
-                android:id="@+id/imagePotions"
+                android:id="@+id/imagePotion"
                 android:layout_width="50dp"
                 android:layout_height="80dp"
                 android:background="@drawable/potion_freeze" />
