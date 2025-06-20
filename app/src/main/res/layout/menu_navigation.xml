@@ -12,7 +12,7 @@
         android:padding="8dp"
         android:layout_marginBottom="16dp">
         <ImageView
-            android:id="@+id/menu"
+            android:id="@+id/openedMenu"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentStart="true"
