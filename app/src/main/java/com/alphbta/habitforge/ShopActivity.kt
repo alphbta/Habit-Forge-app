@@ -20,6 +20,11 @@ class ShopActivity : AppCompatActivity(), OnItemBoughtListener {
     private lateinit var coinsText : TextView
     private lateinit var menuOverlay: FrameLayout
     private lateinit var menuLayout: View
+    private lateinit var userXpBar: ProgressBar
+    private lateinit var hpBar: ProgressBar
+    private lateinit var xp: TextView
+    private lateinit var hp: TextView
+    private lateinit var userLevel: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,14 +55,23 @@ class ShopActivity : AppCompatActivity(), OnItemBoughtListener {
         menuOverlay = findViewById(R.id.menuOverlay)
         menuLayout = findViewById(R.id.navigationMenu)
 
-        val userLevel = findViewById<TextView>(R.id.userLevel)
-        userLevel.text = "${StatsManager.getAllStats(this)["user"].toString()}"
+        userLevel = findViewById(R.id.userLevel)
+        userXpBar = findViewById(R.id.userXpBar)
+        hpBar = findViewById(R.id.hpBar)
+        xp = findViewById(R.id.xp)
+        hp = findViewById(R.id.hp)
+        updateUserStats()
 
         menuIcon.setOnClickListener {
             openMenu()
         }
 
         menuOverlay.setOnClickListener {
+            closeMenu()
+        }
+
+        val openedMenu = findViewById<ImageView>(R.id.openedMenu)
+        openedMenu.setOnClickListener {
             closeMenu()
         }
 
@@ -81,14 +95,6 @@ class ShopActivity : AppCompatActivity(), OnItemBoughtListener {
             startActivity(intent)
             menuOverlay.visibility = View.GONE
         }
-
-        val stats = StatsManager.getAllStats(this)
-        val userXpBar = findViewById<ProgressBar>(R.id.userXpBar)
-        val xpValue = (stats["userXp"]!! * 100) / StatsManager.getRequiredUserXpStat(this)
-        userXpBar.progress = xpValue
-        val hpBar = findViewById<ProgressBar>(R.id.hpBar)
-        val hpValue = (stats["hp"]!! * 100) / StatsManager.getMaxHp(this)
-        hpBar.progress = hpValue
     }
 
     override fun onItemBought() {
@@ -106,5 +112,16 @@ class ShopActivity : AppCompatActivity(), OnItemBoughtListener {
 
     private fun closeMenu() {
         menuOverlay.visibility = View.GONE
+    }
+
+    private fun updateUserStats() {
+        val stats = StatsManager.getAllStats(this)
+        val xpValue = (stats["userXp"]!! * 100) / StatsManager.getRequiredUserXpStat(this)
+        val hpValue = (stats["hp"]!! * 100) / StatsManager.getMaxHp(this)
+        userXpBar.progress = xpValue
+        hpBar.progress = hpValue
+        xp.text = "${stats["userXp"]}/${StatsManager.getRequiredUserXpStat(this)}"
+        hp.text = "${stats["hp"]}/${StatsManager.getMaxHp(this)}"
+        userLevel.text = "${StatsManager.getAllStats(this)["user"].toString()}"
     }
 }

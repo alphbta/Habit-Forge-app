@@ -63,6 +63,11 @@ class AccountActivity : AppCompatActivity() {
             closeMenu()
         }
 
+        val openedMenu = findViewById<ImageView>(R.id.openedMenu)
+        openedMenu.setOnClickListener {
+            closeMenu()
+        }
+
         val menuAccount = findViewById<TextView>(R.id.menuAccount)
         menuAccount.setOnClickListener {
             val intent = Intent(this, AccountActivity::class.java)
@@ -91,6 +96,30 @@ class AccountActivity : AppCompatActivity() {
         val hpBar = findViewById<ProgressBar>(R.id.hpBar)
         val hpValue = (stats["hp"]!! * 100) / StatsManager.getMaxHp(this)
         hpBar.progress = hpValue
+
+        val helpPhysique = findViewById<ImageView>(R.id.help_physique)
+        helpPhysique.setOnClickListener {
+            val dialog = CustomDialogFragment("physique")
+            dialog.show(supportFragmentManager, "customDialog")
+        }
+
+        val helpIntelligence = findViewById<ImageView>(R.id.help_intelligence)
+        helpIntelligence.setOnClickListener {
+            val dialog = CustomDialogFragment("intelligence")
+            dialog.show(supportFragmentManager, "customDialog")
+        }
+
+        val helpCreativity = findViewById<ImageView>(R.id.help_creativity)
+        helpCreativity.setOnClickListener {
+            val dialog = CustomDialogFragment("creativity")
+            dialog.show(supportFragmentManager, "customDialog")
+        }
+
+        val helpCharisma = findViewById<ImageView>(R.id.help_charisma)
+        helpCharisma.setOnClickListener {
+            val dialog = CustomDialogFragment("charisma")
+            dialog.show(supportFragmentManager, "customDialog")
+        }
     }
 
     private fun updateAllTexts() {
