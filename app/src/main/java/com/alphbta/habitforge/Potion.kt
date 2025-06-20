@@ -7,4 +7,5 @@ interface Potion {
     fun getName() : String
     fun getCost() : Int
     fun getFileName() : String
+    fun getDesc() : String
 }

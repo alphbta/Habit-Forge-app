@@ -14,4 +14,6 @@ class PotionHp : Potion {
     override fun getCost(): Int = 5
 
     override fun getFileName(): String = "potion_hp"
+
+    override fun getDesc(): String = "Восстанавливает 25% от максимального здоровья."
 }

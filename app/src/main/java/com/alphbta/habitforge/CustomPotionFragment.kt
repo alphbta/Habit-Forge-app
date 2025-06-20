@@ -1,13 +1,15 @@
 package com.alphbta.habitforge
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 
-class CustomPotionFragment(val imagePotion: String) : DialogFragment() {
+class CustomPotionFragment(private val potion: Potion, private val context: Context, private val listener: OnItemBoughtListener) : DialogFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -19,21 +21,28 @@ class CustomPotionFragment(val imagePotion: String) : DialogFragment() {
         val potionDesc = rootView.findViewById<TextView>(R.id.descriptionPotions)
         val potionBackground = rootView.findViewById<View>(R.id.imagePotion)
         val buyPotion = rootView.findViewById<TextView>(R.id.buyPotion)
+        val potionCost = rootView.findViewById<TextView>(R.id.potionsMoney)
 
-        if (imagePotion == "freeze") {
-            potionName.text = "Зелье заморозки"
-            potionDesc.text = "Заморозьте регулярное дело или привычку. Замороженные задания не оборвут количество выполнений подряд сегодня, если вы их не выполните!"
-            potionBackground.setBackgroundResource(R.drawable.potion_freeze)
+        potionName.text = potion.getName()
+        potionDesc.text = potion.getDesc()
+        potionCost.text = potion.getCost().toString()
+        val imageId = context.resources.getIdentifier(potion.getFileName(), "drawable", context.packageName)
+        potionBackground.setBackgroundResource(imageId)
 
+        buyPotion.setOnClickListener {
+            val stats = StatsManager.getAllStats(context)
+            val currentCoins = stats["coins"]!!
+            val potionCost = potion.getCost()
+            if (currentCoins >= potionCost) {
+                potion.drink(context)
+                StatsManager.addCoins(context, -potionCost)
+                listener.onItemBought()
+                dismiss()
+            }
+            else {
+                Toast.makeText(context, "Недостаточно монет", Toast.LENGTH_SHORT).show()
+            }
         }
-
-        if (imagePotion == "hp") {
-            potionName.text = "Зелье лечения"
-            potionDesc.text = "Восстанавливает 25% от максимального здоровья."
-            potionBackground.setBackgroundResource(R.drawable.potion_hp)
-        }
-
-
 
         return rootView
     }

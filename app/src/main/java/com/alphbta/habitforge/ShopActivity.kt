@@ -33,7 +33,7 @@ class ShopActivity : AppCompatActivity(), OnItemBoughtListener {
         coinsText = findViewById(R.id.coins)
         updateCoins()
         val potions : List<Potion> = listOf(PotionHp(), PotionFreeze())
-        val potionsAdapter = PotionAdapter(potions, this, this)
+        val potionsAdapter = PotionAdapter(potions, this, this, supportFragmentManager)
         val potionsRecyclerView = findViewById<RecyclerView>(R.id.potionsList)
         val gridLayoutManager = GridLayoutManager(this, 3)
         potionsRecyclerView.adapter = potionsAdapter
@@ -99,6 +99,7 @@ class ShopActivity : AppCompatActivity(), OnItemBoughtListener {
 
     override fun onItemBought() {
         updateCoins()
+        updateUserStats()
     }
 
     private fun updateCoins() {

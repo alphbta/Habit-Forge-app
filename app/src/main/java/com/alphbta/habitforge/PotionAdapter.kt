@@ -8,9 +8,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 
-class PotionAdapter(private val potions : List<Potion>, private val context: Context, private val listener: OnItemBoughtListener) :
+class PotionAdapter(private val potions : List<Potion>, private val context: Context, private val listener: OnItemBoughtListener, private val supportFragmentManager: FragmentManager) :
         RecyclerView.Adapter<PotionAdapter.PotionViewHolder>() {
     class PotionViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val itemTitle = view.findViewById<TextView>(R.id.itemTitle)
@@ -35,17 +36,8 @@ class PotionAdapter(private val potions : List<Potion>, private val context: Con
         }
 
         holder.card.setOnClickListener {
-            val stats = StatsManager.getAllStats(context)
-            val currentCoins = stats["coins"]!!
-            val potionCost = potion.getCost()
-            if (currentCoins >= potionCost) {
-                potion.drink(context)
-                StatsManager.addCoins(context, -potionCost)
-                listener.onItemBought()
-            }
-            else {
-                Toast.makeText(context, "Недостаточно монет", Toast.LENGTH_SHORT).show()
-            }
+            val dialog = CustomPotionFragment(potion, context, listener)
+            dialog.show(supportFragmentManager, "customPotion")
         }
     }
 
