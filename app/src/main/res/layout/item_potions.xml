@@ -26,15 +26,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
+
     <ImageView
         android:id="@+id/imagePotions"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/itemTitle"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/potion_hp"
-        android:layout_marginTop="8dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/itemTitle"
+        app:srcCompat="@drawable/potion_hp" />
 
     <LinearLayout
         android:layout_width="wrap_content"

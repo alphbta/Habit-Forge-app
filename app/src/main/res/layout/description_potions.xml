@@ -1,0 +1,90 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="250dp"
+        android:layout_height="330dp"
+        android:orientation="vertical"
+        android:background="#5C5B5B"
+        android:padding="0dp"
+        android:layout_gravity="center">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/namePotions"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:text="Название зелья"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="4dp">
+
+            <View
+                android:id="@+id/imagePotions"
+                android:layout_width="50dp"
+                android:layout_height="80dp"
+                android:background="@drawable/potion_freeze" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/descriptionPotions"
+            android:layout_width="match_parent"
+            android:layout_height="123dp"
+            android:layout_margin="16dp"
+            android:text="Описание Зелья"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="24dp" >
+                <TextView
+                    android:id="@+id/potionsMoney"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="стоимость"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"/>
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/money"
+                    android:layout_marginStart="4dp" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/buyPotion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="16dp"
+                android:background="#D9D9D9"
+                android:padding="6dp"
+                android:text="Купить"
+                android:textColor="#5C5B5B"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </FrameLayout>
+    </LinearLayout>
+</FrameLayout>
