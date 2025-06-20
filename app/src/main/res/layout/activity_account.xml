@@ -307,39 +307,8 @@
                 android:layout_height="32dp"
                 android:src="@drawable/baseline_contact_support_24"
                 app:tint="#CCCCCC" />
-
         </LinearLayout>
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/coins"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#5C5B5B"
-        app:layout_constraintTop_toBottomOf="@color/background_dark"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-
-    <TextView
-        android:id="@+id/userXp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@color/background_dark"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/coins" />
-
-    <TextView
-        android:id="@+id/freezeCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textColor="@color/background_dark"
-        android:text="Заморозки: "
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forfor" />
 
     <FrameLayout
         android:id="@+id/menuOverlay"

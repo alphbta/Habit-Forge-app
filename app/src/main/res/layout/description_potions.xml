@@ -5,7 +5,7 @@
 
     <LinearLayout
         android:layout_width="250dp"
-        android:layout_height="340dp"
+        android:layout_height="360dp"
         android:orientation="vertical"
         android:background="#5C5B5B"
         android:padding="0dp"
@@ -43,7 +43,7 @@
         <TextView
             android:id="@+id/descriptionPotions"
             android:layout_width="match_parent"
-            android:layout_height="123dp"
+            android:layout_height="160dp"
             android:layout_margin="16dp"
             android:text="Описание Зелья"
             android:textColor="#FFFFFF"

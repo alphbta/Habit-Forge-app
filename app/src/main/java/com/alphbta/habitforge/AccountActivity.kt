@@ -7,10 +7,7 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
 class AccountActivity : AppCompatActivity() {
     private lateinit var physiqueLevel: TextView
@@ -22,9 +19,6 @@ class AccountActivity : AppCompatActivity() {
     private lateinit var creativityXp: TextView
     private lateinit var charismaXp: TextView
     private lateinit var userLevel: TextView
-    private lateinit var userXp: TextView
-    private lateinit var coins: TextView
-    private lateinit var freezeCount: TextView
     private lateinit var menuOverlay: FrameLayout
     private lateinit var menuLayout: View
     private lateinit var xp: TextView
@@ -43,9 +37,6 @@ class AccountActivity : AppCompatActivity() {
         creativityXp = findViewById(R.id.creativityXp)
         charismaXp = findViewById(R.id.charismaXp)
         userLevel = findViewById(R.id.userLevel)
-        userXp = findViewById(R.id.userXp)
-        coins = findViewById(R.id.coins)
-        freezeCount = findViewById(R.id.freezeCount)
         xp = findViewById(R.id.xp)
         hp = findViewById(R.id.hp)
 
@@ -133,9 +124,6 @@ class AccountActivity : AppCompatActivity() {
         creativityXp.text = "${stats["creativityXp"]}/${StatsManager.getRequiredXpStat(this, "creativity")}"
         charismaXp.text = "${stats["charismaXp"]}/${StatsManager.getRequiredXpStat(this, "charisma")}"
         userLevel.text = "${stats["user"]}"
-        userXp.text = "Опыт: ${stats["userXp"]}"
-        coins.text = "Монеты: ${stats["coins"]}"
-        freezeCount.text = "Заморозки: ${stats["freeze"]}"
         xp.text = "${stats["userXp"]}/${StatsManager.getRequiredUserXpStat(this)}"
         hp.text = "${stats["hp"]}/${StatsManager.getMaxHp(this)}"
     }
